@@ -7,7 +7,7 @@ const ALLOWED_ORIGINS = [
   "https://www.ive-entertainment.com",
 ];
 
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-3.8-flash";
 const MAX_TURNS = 10;          // 대화 기록은 최근 10개만 보냄
 const MAX_CHARS = 500;         // 한 번에 보낼 수 있는 글자 수
 const RATE_LIMIT = 20;         // 같은 사람(IP)이 1분에 보낼 수 있는 질문 수
@@ -91,7 +91,7 @@ export default {
         body: JSON.stringify({
           systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
           contents,
-          generationConfig: { temperature: 0.4, maxOutputTokens: 600, thinkingConfig: { thinkingBudget: 0 } },
+          generationConfig: { temperature: 0.4, maxOutputTokens: 600 },
         }),
       }
     );
