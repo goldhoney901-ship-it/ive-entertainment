@@ -812,6 +812,13 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
 .stat-num span{color:var(--live)!important}
 .process-card::after{background:linear-gradient(90deg,var(--live),var(--neon-pink))!important}
 </style>
+<style>
+@media (max-width:600px){
+  .process-grid{grid-template-columns:1fr!important}
+  .about-newicon{transform:translate(0,-22%)!important;width:70%!important}
+  .hero-cta{gap:10px}
+}
+</style>
 </head>
 <body>
 
@@ -950,7 +957,7 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
         </div>
       </a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;">
+    <div class="ive-films-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;">
       <a href="https://youtu.be/bpCJUatfRgQ" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(255,45,120,0.2);transition:all 0.3s;"
         onmouseover="this.style.borderColor='rgba(255,45,120,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(255,45,120,0.15)'"
         onmouseout="this.style.borderColor='rgba(255,45,120,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
