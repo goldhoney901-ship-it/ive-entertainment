@@ -33,6 +33,18 @@ jobs:
           echo "::add-mask::$CF"; echo "::add-mask::$GEM"
           echo "CLOUDFLARE_API_TOKEN=$CF" >> "$GITHUB_ENV"
           echo "GEMINI_API_KEY=$GEM" >> "$GITHUB_ENV"
+      - name: Register workers.dev subdomain (first time only)
+        run: |
+          ACC=a06c08092e0426b9fa00f162cbf261f5
+          API=https://api.cloudflare.com/client/v4/accounts/$ACC/workers/subdomain
+          CUR=$(curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" $API | python3 -c "import sys,json;d=json.load(sys.stdin);print((d.get('result') or {}).get('subdomain') or '')")
+          if [ -n "$CUR" ]; then echo "::notice::workers.dev subdomain = $CUR"; exit 0; fi
+          for NAME in ive-entertainment iveent ive-ent-2019; do
+            R=$(curl -s -X PUT -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" --data "{\"subdomain\":\"$NAME\"}" $API)
+            if echo "$R" | grep -q '"success":true'; then echo "::notice::registered workers.dev subdomain = $NAME"; exit 0; fi
+            echo "::warning::$NAME failed: $(echo "$R" | python3 -c "import sys,json;print(json.load(sys.stdin).get('errors'))")"
+          done
+          exit 1
       - name: Deploy worker
         run: |
           set -o pipefail
