@@ -54,3 +54,10 @@ jobs:
         run: |
           set -o pipefail
           printf '%s' "$GEMINI_API_KEY" | npx -y wrangler@4 secret put GEMINI_API_KEY 2>&1 | tee secret.log || { tail -n 15 secret.log | sed 's/^/::error::/' ; exit 1; }
+      - name: Smoke test
+        run: |
+          sleep 10
+          R=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"크리에이터 지원은 어떻게 하나요?"}]}' -w ' HTTP%{http_code}')
+          echo "::notice::TEST=$(echo "$R" | tr '\n' ' ' | cut -c1-600)"
+          F=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://evil.example" -d '{}')
+          echo "::notice::OTHER_ORIGIN_STATUS=$F"
