@@ -56,6 +56,9 @@ jobs:
           printf '%s' "$GEMINI_API_KEY" | npx -y wrangler@4 secret put GEMINI_API_KEY 2>&1 | tee secret.log || { tail -n 15 secret.log | sed 's/^/::error::/' ; exit 1; }
       - name: Smoke test
         run: |
+          M=$(curl -s -m 30 "https://generativelanguage.googleapis.com/v1beta/models?pageSize=200" -H "x-goog-api-key: $GEMINI_API_KEY" | python3 -c "import sys,json;print(' '.join(m['name'].split('/')[1] for m in json.load(sys.stdin).get('models',[]) if 'generateContent' in m.get('supportedGenerationMethods',[]) and 'flash' in m['name']))")
+          echo "::notice::FLASH_MODELS=$M"
+
           G=$(curl -s -m 60 "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent" -H "x-goog-api-key: $GEMINI_API_KEY" -H "Content-Type: application/json" -d '{"contents":[{"role":"user","parts":[{"text":"hi"}]}]}' -w ' HTTP%{http_code}')
           echo "::notice::GEMINI_DIRECT=$(echo "$G" | tr '\n' ' ' | sed 's/  */ /g' | cut -c1-500)"
 
