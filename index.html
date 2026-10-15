@@ -819,6 +819,25 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
   .hero-cta{gap:10px}
 }
 </style>
+<style>
+/* 2026-10-16: 더보기, 연락처 통합, 모바일 제목 */
+body{word-break:keep-all}
+.creators-grid.collapsed .creator-card:nth-child(n+11){display:none}
+.creators-more{font-size:13px!important;letter-spacing:.5px!important;line-height:1.7;color:rgba(255,255,255,.7)!important;text-align:center}
+.creators-toggle-wrap{display:flex;justify-content:center;margin:28px 0 8px}
+.creators-toggle{padding:14px 34px;border-radius:999px;border:1px solid var(--neon-pink);background:transparent;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .25s,box-shadow .25s}
+.creators-toggle:hover{background:rgba(255,45,120,.12);box-shadow:0 0 24px rgba(255,45,120,.35)}
+.contact-icon{color:var(--neon-pink)}
+.contact-value a:hover{color:var(--neon-pink)!important}
+.cv-btns{display:flex;flex-direction:column;align-items:center;gap:12px}
+.cv-kakao{display:inline-flex;align-items:center;justify-content:center;padding:13px 28px;background:#FEE500;color:#000;font-weight:700;font-size:14px;text-decoration:none;border-radius:999px}
+.cv-kakao:hover{background:#f0d800}
+@media (max-width:600px){
+  .section-title{font-size:30px!important;letter-spacing:1px!important;line-height:1.25!important}
+  .creators-grid.collapsed .creator-card:nth-child(n+9){display:none}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:14px 20px!important;padding:0}
+}
+</style>
 </head>
 <body>
 
@@ -1085,7 +1104,7 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
       <div class="section-eyebrow">Our Creators</div>
       <h2 class="section-title">IVE <em>크리에이터</em></h2>
     </div>
-                <div class="creators-grid reveal">
+                <div class="creators-grid reveal collapsed" id="creatorsGrid">
       <div class="creator-card">
         <img src="data:image/jpeg;base64,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" alt="쿠로미" class="creator-photo">
         <div class="creator-overlay"></div>
@@ -1357,7 +1376,8 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
         </div>
       </div>
     </div>
-    <div class="creators-more">+ <span>209명</span>의 크리에이터가 함께 활동 중입니다</div>
+    <div class="creators-toggle-wrap"><button type="button" class="creators-toggle" id="creatorsToggle" aria-expanded="false">크리에이터 더 보기</button></div>
+    <div class="creators-more">위 크리에이터는 일부만 소개한 것으로, 현재 <span>209명</span> 이상의 크리에이터가 IVE와 함께 활동 중입니다</div>
   </div>
 </section>
 
@@ -1405,7 +1425,7 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
       </div>
       <div class="form-privacy">
         <input type="checkbox" id="privacy" required>
-        <label for="privacy">개인정보 수집 및 이용에 동의합니다. IVE Entertainment는 지원 처리 목적으로만 정보를 사용합니다. (접수 내용은 이메일 전송 서비스 FormSubmit을 거쳐 회사 이메일로 전달됩니다.)</label>
+        <label for="privacy">개인정보 수집 및 이용에 동의합니다. IVE Entertainment는 지원 처리 목적으로만 정보를 사용합니다. (접수 내용은 이메일 전송 서비스 FormSubmit을 거쳐 회사 이메일로 전달됩니다.) <a href="privacy.html" target="_blank" style="color:var(--neon-pink)">개인정보처리방침 보기</a></label>
       </div>
       <button type="submit" class="form-submit">Submit Application</button>
     </form>
@@ -1420,24 +1440,31 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
       <h2 class="section-title">문의하기</h2>
       <div class="contact-items">
         <div class="contact-item">
-          <div class="contact-icon">📞</div>
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
           <div>
             <div class="contact-label">전화 문의</div>
-            <div class="contact-value">050-6661-0164</div>
+            <div class="contact-value"><a href="tel:05066610164" style="color:#fff;text-decoration:none;">050-6661-0164</a></div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">✉️</div>
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
           <div>
             <div class="contact-label">이메일 문의</div>
-            <div class="contact-value">ive-ent@naver.com</div>
+            <div class="contact-value"><a href="mailto:ive-ent@naver.com" style="color:#fff;text-decoration:none;">ive-ent@naver.com</a></div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">💬</div>
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4c5 0 9 3.1 9 7s-4 7-9 7c-.9 0-1.8-.1-2.6-.3L5 20l1.2-3.6C4.2 15.1 3 13.2 3 11c0-3.9 4-7 9-7z"/></svg></div>
           <div>
             <div class="contact-label">카카오톡</div>
             <div class="contact-value"><a href="https://open.kakao.com/o/szo3y1jf" target="_blank" style="color:#fff;text-decoration:none;">오픈채팅 바로가기 →</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></div>
+          <div>
+            <div class="contact-label">인스타그램</div>
+            <div class="contact-value"><a href="https://www.instagram.com/reel/DOObbIgkzQU/?igsh=MXJiZDdrcDV1ZjYzZg==" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">공식 인스타그램 →</a></div>
           </div>
         </div>
       </div>
@@ -1454,52 +1481,12 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
 <path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#ffffff"/></svg>
         <h3>IVE Entertainment</h3>
         <p>크리에이터와 함께 더 큰 미래를<br>만들어 나가겠습니다.</p>
-        <a href="#apply" class="btn-neon">지금 바로 지원하기</a>
+        <div class="cv-btns"><a href="#apply" class="btn-neon">지금 바로 지원하기</a><a href="https://open.kakao.com/o/szo3y1jf" target="_blank" rel="noopener" class="cv-kakao">카카오톡으로 문의하기</a></div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- KAKAO -->
-<section style="background:#000;padding:60px 80px;text-align:center;border-top:1px solid rgba(255,255,255,0.07);">
-  <div style="max-width:600px;margin:0 auto;">
-    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:#ff2d78;text-transform:uppercase;margin-bottom:16px;">💬 상담 문의</div>
-    <h3 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;letter-spacing:3px;color:#fff;margin-bottom:12px;">카카오톡 오픈채팅</h3>
-    <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:32px;line-height:1.8;">궁금한 점이 있으시면 카카오톡 오픈채팅으로 편하게 문의해 주세요.</p>
-    <a href="https://open.kakao.com/o/szo3y1jf" target="_blank"
-      style="display:inline-flex;align-items:center;gap:12px;background:#FEE500;color:#000;padding:16px 48px;font-size:15px;font-weight:700;letter-spacing:1px;text-decoration:none;transition:all 0.3s;border-radius:0;"
-      onmouseover="this.style.background='#f0d800';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(254,229,0,0.4)'"
-      onmouseout="this.style.background='#FEE500';this.style.transform='translateY(0)';this.style.boxShadow='none'">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="11" rx="10" ry="8.5" fill="#000"/>
-        <path d="M6 14.5c.5 1.5 2 2.5 3.5 2L11 18l1-1.5c2.5-.2 4.5-1.8 4.5-3.8 0-2.2-2-4-4.5-4s-4.5 1.8-4.5 4c0 .6.2 1.2.5 1.8z" fill="#FEE500"/>
-      </svg>
-      카카오톡으로 문의하기
-    </a>
-  </div>
-</section>
-
-
-<!-- INSTAGRAM -->
-<section style="background:#080808;padding:60px 80px;text-align:center;border-top:1px solid rgba(255,255,255,0.07);">
-  <div style="max-width:600px;margin:0 auto;">
-    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:#ff2d78;text-transform:uppercase;margin-bottom:16px;">📸 SNS</div>
-    <h3 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;letter-spacing:3px;color:#fff;margin-bottom:12px;">인스타그램</h3>
-    <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:32px;line-height:1.8;">IVE Entertainment 공식 인스타그램을 팔로우하세요.</p>
-    <a href="https://www.instagram.com/reel/DOObbIgkzQU/?igsh=MXJiZDdrcDV1ZjYzZg==" target="_blank"
-      style="display:inline-flex;align-items:center;gap:12px;padding:16px 48px;font-size:15px;font-weight:700;letter-spacing:1px;text-decoration:none;transition:all 0.3s;border-radius:0;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;"
-      onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(220,39,67,0.4)'"
-      onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
-      </svg>
-      인스타그램 바로가기
-    </a>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
@@ -1520,6 +1507,7 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
     <li><a href="#creators">Creators</a></li>
     <li><a href="#apply">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="privacy.html">개인정보처리방침</a></li>
   </ul>
 </footer>
 
@@ -1539,6 +1527,10 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 reveals.forEach(el => obs.observe(el));
 
+
+// 크리에이터 더 보기
+(function(){var g=document.getElementById('creatorsGrid'),b=document.getElementById('creatorsToggle');if(!g||!b)return;
+b.addEventListener('click',function(){var c=g.classList.toggle('collapsed');b.textContent=c?'크리에이터 더 보기':'접기';b.setAttribute('aria-expanded',String(!c));if(c)g.scrollIntoView({behavior:'smooth',block:'start'});});})();
 // Form - 지원서를 회사 이메일(ive-ent@naver.com)로 전송
 function handleSubmit(e) {
   e.preventDefault();
