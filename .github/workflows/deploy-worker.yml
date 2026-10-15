@@ -10,19 +10,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    defaults:
+      run:
+        working-directory: worker
     steps:
       - uses: actions/checkout@v4
-      - name: Skip if Cloudflare secrets are not set yet
-        if: ${{ env.CF_TOKEN == '' }}
-        run: echo "CLOUDFLARE_API_TOKEN secret is not set yet - skipping deploy."
-      - name: Deploy to Cloudflare Workers
-        if: ${{ env.CF_TOKEN != '' }}
-        uses: cloudflare/wrangler-action@v3
+      - uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: worker
-          secrets: |
-            GEMINI_API_KEY
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          node-version: 22
+      - name: Check secrets
+        run: |
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "::error::CLOUDFLARE_API_TOKEN missing"; exit 1; }
+          [ -n "$GEMINI_API_KEY" ] || { echo "::error::GEMINI_API_KEY missing"; exit 1; }
+      - name: Deploy worker
+        run: |
+          set -o pipefail
+          npx -y wrangler@4 deploy 2>&1 | tee deploy.log || { tail -n 15 deploy.log | sed 's/^/::error::/' ; exit 1; }
+          grep -o 'https://[a-zA-Z0-9.-]*workers.dev' deploy.log | head -1 | sed 's/^/::notice::WORKER_URL=/' || true
+      - name: Set Gemini secret
+        run: |
+          set -o pipefail
+          printf '%s' "$GEMINI_API_KEY" | npx -y wrangler@4 secret put GEMINI_API_KEY 2>&1 | tee secret.log || { tail -n 15 secret.log | sed 's/^/::error::/' ; exit 1; }
