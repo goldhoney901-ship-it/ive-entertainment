@@ -7,7 +7,7 @@ const ALLOWED_ORIGINS = [
   "https://www.ive-entertainment.com",
 ];
 
-const MODEL = "gemini-3.8-flash";
+const MODELS = ["gemini-3.8-flash", "gemini-flash-latest", "gemini-3.5-flash"]; // 앞 모델이 혼잡하면 다음 모델로
 const MAX_TURNS = 10;          // 대화 기록은 최근 10개만 보냄
 const MAX_CHARS = 500;         // 한 번에 보낼 수 있는 글자 수
 const RATE_LIMIT = 20;         // 같은 사람(IP)이 1분에 보낼 수 있는 질문 수
@@ -83,18 +83,22 @@ export default {
       return json({ error: "질문이 비어 있습니다." }, 400, origin);
     }
 
-    const r = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-          contents,
-          generationConfig: { temperature: 0.4, maxOutputTokens: 600 },
-        }),
-      }
-    );
+    let r;
+    for (const model of MODELS) {
+      r = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+            contents,
+            generationConfig: { temperature: 0.4, maxOutputTokens: 600 },
+          }),
+        }
+      );
+      if (r.ok || ![404, 429, 500, 503].includes(r.status)) break;
+    }
 
     if (!r.ok) {
       const status = r.status === 429 ? 429 : 502;

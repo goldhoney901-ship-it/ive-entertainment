@@ -22,7 +22,6 @@ jobs:
           node-version: 22
       - name: Check secrets
         run: |
-          echo "::notice::CF token lines=$(printf '%s\n' "$RAW_CF" | grep -c .) chars=${#RAW_CF}; Gemini lines=$(printf '%s\n' "$RAW_GEM" | grep -c .) chars=${#RAW_GEM}"
           CF=$(printf '%s' "$RAW_CF" | head -n1 | tr -d '[:space:]')
           GEM=$(printf '%s' "$RAW_GEM" | head -n1 | tr -d '[:space:]')
           kind(){ case "$1" in cfut_*|cfat_*) echo cloudflare;; AIza*|AQ.*) echo google;; *) echo unknown;; esac; }
@@ -56,11 +55,7 @@ jobs:
           printf '%s' "$GEMINI_API_KEY" | npx -y wrangler@4 secret put GEMINI_API_KEY 2>&1 | tee secret.log || { tail -n 15 secret.log | sed 's/^/::error::/' ; exit 1; }
       - name: Smoke test
         run: |
-          M=$(curl -s -m 30 "https://generativelanguage.googleapis.com/v1beta/models?pageSize=200" -H "x-goog-api-key: $GEMINI_API_KEY" | python3 -c "import sys,json;print(' '.join(m['name'].split('/')[1] for m in json.load(sys.stdin).get('models',[]) if 'generateContent' in m.get('supportedGenerationMethods',[]) and 'flash' in m['name']))")
-          echo "::notice::FLASH_MODELS=$M"
 
-          G=$(curl -s -m 60 "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent" -H "x-goog-api-key: $GEMINI_API_KEY" -H "Content-Type: application/json" -d '{"contents":[{"role":"user","parts":[{"text":"hi"}]}]}' -w ' HTTP%{http_code}')
-          echo "::notice::GEMINI_DIRECT=$(echo "$G" | tr '\n' ' ' | sed 's/  */ /g' | cut -c1-500)"
 
           sleep 10
           R=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"크리에이터 지원은 어떻게 하나요?"}]}' -w ' HTTP%{http_code}')
