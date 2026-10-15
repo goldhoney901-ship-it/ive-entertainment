@@ -1432,7 +1432,7 @@ function handleSubmit(e) {
       send=form.querySelector('.ive-send'), history=[], greeted=false;
 
   function esc(t){return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function linkify(t){return esc(t).replace(/(https?:\/\/[^\s)]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');}
+  function linkify(t){return esc(t.replace(/\*\*/g,'')).replace(/(https?:\/\/[^\s)]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');}
   function add(text, who){var d=document.createElement('div');d.className='ive-m '+(who==='user'?'ive-user':'ive-bot');
     if(who==='user'){d.textContent=text;}else{d.innerHTML=linkify(text);} log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
 
