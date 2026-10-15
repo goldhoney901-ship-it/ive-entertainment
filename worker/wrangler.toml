@@ -2,3 +2,4 @@ name = "ive-chat"
 main = "worker.js"
 compatibility_date = "2025-09-01"
 workers_dev = true
+account_id = "a06c08092e0426b9fa00f162cbf261f5"
