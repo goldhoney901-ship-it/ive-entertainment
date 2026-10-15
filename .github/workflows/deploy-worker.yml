@@ -25,6 +25,9 @@ jobs:
           echo "::notice::CF token lines=$(printf '%s\n' "$RAW_CF" | grep -c .) chars=${#RAW_CF}; Gemini lines=$(printf '%s\n' "$RAW_GEM" | grep -c .) chars=${#RAW_GEM}"
           CF=$(printf '%s' "$RAW_CF" | head -n1 | tr -d '[:space:]')
           GEM=$(printf '%s' "$RAW_GEM" | head -n1 | tr -d '[:space:]')
+          kind(){ case "$1" in cfut_*|cfat_*) echo cloudflare;; AIza*|AQ.*) echo google;; *) echo unknown;; esac; }
+          echo "::notice::CLOUDFLARE_API_TOKEN looks like: $(kind "$CF") / GEMINI_API_KEY looks like: $(kind "$GEM")"
+          if [ "$(kind "$CF")" = google ] && [ "$(kind "$GEM")" = cloudflare ]; then T="$CF"; CF="$GEM"; GEM="$T"; echo "::warning::The two secrets were swapped - using them the right way round."; fi
           [ -n "$CF" ] || { echo "::error::CLOUDFLARE_API_TOKEN missing"; exit 1; }
           [ -n "$GEM" ] || { echo "::error::GEMINI_API_KEY missing"; exit 1; }
           echo "::add-mask::$CF"; echo "::add-mask::$GEM"
