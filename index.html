@@ -722,7 +722,8 @@ footer {
 /* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding: 0 24px; }
-  .nav-links { display: none; }
+  .nav-links { gap: 0; }
+  .nav-links li:not(:last-child) { display: none; }
   section { padding: 80px 24px; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -863,7 +864,7 @@ body{word-break:keep-all}
     <li><a href="#platforms">Platforms</a></li>
     <li><a href="#creators">Creators</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#apply" class="nav-cta">Join Us</a></li>
+    <li><a href="#apply" class="nav-cta">지원하기</a></li>
   </ul>
 </nav>
 
@@ -1505,7 +1506,7 @@ body{word-break:keep-all}
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
     <li><a href="#creators">Creators</a></li>
-    <li><a href="#apply">Join Us</a></li>
+    <li><a href="#apply">지원하기</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="privacy.html">개인정보처리방침</a></li>
   </ul>

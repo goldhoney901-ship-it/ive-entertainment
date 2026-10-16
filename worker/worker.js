@@ -85,9 +85,11 @@ export default {
 
     let r;
     for (const model of MODELS) {
+      try {
       r = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
         {
+          signal: AbortSignal.timeout(15000), // 한 모델이 15초 넘게 멈추면 다음 모델로
           method: "POST",
           headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
           body: JSON.stringify({
@@ -97,6 +99,7 @@ export default {
           }),
         }
       );
+      } catch (e) { r = { ok: false, status: 504 }; continue; }
       if (r.ok || ![404, 429, 500, 503].includes(r.status)) break;
     }
 
