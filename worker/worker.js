@@ -95,7 +95,7 @@ export default {
           body: JSON.stringify({
             systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
             contents,
-            generationConfig: { temperature: 0.4, maxOutputTokens: 600 },
+            generationConfig: { temperature: 0.4, maxOutputTokens: 2048 },
           }),
         }
       );
@@ -108,7 +108,7 @@ export default {
       return json({ error: status === 429 ? "오늘 AI 사용량이 많습니다. 카카오톡으로 문의해 주세요." : "AI 응답에 실패했습니다." }, status, origin);
     }
     const data = await r.json();
-    const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
+    const text = (data.candidates?.[0]?.content?.parts || []).filter(p => !p.thought).map(p => p.text || "").join("").trim();
     return json({ reply: text || "죄송합니다. 답변을 만들지 못했습니다. 카카오톡 오픈채팅으로 문의해 주세요." }, 200, origin);
   },
 };
