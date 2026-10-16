@@ -1,0 +1,9 @@
+name: Form email check
+on: workflow_dispatch
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          R=$(curl -s -m 30 -X POST https://api.web3forms.com/submit -H "Content-Type: application/json" -H "Accept: application/json" -H "Origin: https://ive-entertainment.com" -H "Referer: https://ive-entertainment.com/" -d '{"access_key":"db547074-9886-4122-b63f-43c66c5acb2d","subject":"[IVE 홈페이지] 지원서 메일 연결 테스트","from_name":"IVE 홈페이지 지원서","안내":"홈페이지 지원서가 이 메일로 오는지 확인하는 테스트입니다. 무시하셔도 됩니다."}' || true)
+          echo "::notice::FORM=$(echo "$R" | cut -c1-400)"

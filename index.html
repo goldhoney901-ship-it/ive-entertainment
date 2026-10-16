@@ -1481,7 +1481,7 @@ body{background:#fff;color:#1a1424}
       </div>
       <div class="form-privacy">
         <input type="checkbox" id="privacy" required>
-        <label for="privacy">개인정보 수집 및 이용에 동의합니다. IVE Entertainment는 지원 처리 목적으로만 정보를 사용합니다. (접수 내용은 이메일 전송 서비스 FormSubmit을 거쳐 회사 이메일로 전달됩니다.) <a href="privacy.html" target="_blank" style="color:var(--neon-pink)">개인정보처리방침 보기</a></label>
+        <label for="privacy">개인정보 수집 및 이용에 동의합니다. IVE Entertainment는 지원 처리 목적으로만 정보를 사용합니다. (접수 내용은 이메일 전송 서비스 Web3Forms를 거쳐 회사 이메일로 전달됩니다.) <a href="privacy.html" target="_blank" style="color:var(--neon-pink)">개인정보처리방침 보기</a></label>
       </div>
       <button type="submit" class="form-submit">지원서 보내기</button>
     </form>
@@ -1599,12 +1599,13 @@ function handleSubmit(e) {
   if (now < new Date(now.getFullYear(), b.getMonth(), b.getDate())) age--;
   if (isNaN(age) || age < 19) { alert('만 19세 이상만 지원 가능합니다.'); return; }
   btn.disabled = true; btn.textContent = '보내는 중...';
-  fetch('https://formsubmit.co/ajax/ive-ent@naver.com', {
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
-      _subject: '[IVE 홈페이지] 크리에이터 지원서 - ' + v('name'),
-      _template: 'table', _captcha: 'false',
+      access_key: 'db547074-9886-4122-b63f-43c66c5acb2d',
+      subject: '[IVE 홈페이지] 크리에이터 지원서 - ' + v('name'),
+      from_name: 'IVE 홈페이지 지원서', botcheck: '',
       '이름': v('name'), '연락처': v('phone'), '생년월일': v('birth'),
       '플랫폼': v('platform'), 'SNS URL': v('sns'), '방송 경험': v('experience'),
       '개인정보 동의': f.querySelector('#privacy').checked ? '동의' : '미동의'
