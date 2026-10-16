@@ -76,7 +76,7 @@ nav {
   width: 42px; height: 42px;
   border-radius: 50%;
   object-fit: contain;
-  background: #0d0c1d;
+  background: #221b30;
   border: 1px solid rgba(255,45,120,0.3);
 }
 .nav-logo-text {
@@ -157,7 +157,7 @@ nav {
   width: 110px; height: 110px;
   border-radius: 50%;
   object-fit: contain;
-  background: #0d0c1d;
+  background: #221b30;
   margin: 0 auto 32px;
   display: block;
   border: 1px solid rgba(255,45,120,0.4);
@@ -306,7 +306,7 @@ section { padding: 120px 80px; }
   position: absolute; top: 0; left: 0;
   width: 72%; height: 82%;
   object-fit: contain;
-  background: #0d0c1d;
+  background: #221b30;
   border: 1px solid rgba(255,45,120,0.2);
   border-radius: 4px;
   box-shadow: 0 0 60px rgba(255,45,120,0.08);
@@ -641,7 +641,7 @@ section { padding: 120px 80px; }
 .contact-visual img {
   width: 88px; height: 88px;
   border-radius: 50%; object-fit: contain;
-  background: #0d0c1d;
+  background: #221b30;
   border: 1px solid rgba(255,45,120,0.3);
   box-shadow: 0 0 40px rgba(255,45,120,0.15);
   margin-bottom: 24px;
@@ -681,7 +681,7 @@ footer {
 .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .footer-logo img {
   width: 30px; height: 30px; border-radius: 50%;
-  object-fit: contain; background: #0d0c1d;
+  object-fit: contain; background: #221b30;
 }
 .footer-logo-text {
   font-family: 'Cormorant Garamond', serif;
@@ -839,6 +839,28 @@ body{word-break:keep-all}
   .creators-grid.collapsed .creator-card:nth-child(n+9){display:none}
   .footer-links{flex-wrap:wrap;justify-content:center;gap:14px 20px!important;padding:0}
 }
+</style>
+<style>
+/* 2026-10 밝기 보정: 전체 톤을 한 단계 밝게 */
+:root{--black:#15111d;--dark:#1c1727;--dark2:#231d30;--dark3:#2b2439;
+--text-dim:rgba(255,255,255,0.68);--text-mid:rgba(255,255,255,0.85);--border:rgba(255,255,255,0.12)}
+body{background:var(--black)}
+nav{background:rgba(21,17,29,0.8)!important}
+.ive-films{background:var(--dark)!important;border-top-color:var(--border)!important}
+.ive-films-grid > a > div:last-child{background:var(--dark2)!important}
+.process-card{background:linear-gradient(180deg,#261f34,#1e1929)!important;border-color:rgba(255,255,255,.12)!important}
+.apply-form{background:rgba(255,255,255,.06)!important}
+.form-input{background:rgba(255,255,255,.07)!important;border-color:rgba(255,255,255,.16)!important}
+.form-input::placeholder{color:rgba(255,255,255,0.55)}
+.form-label,.stat-label,.footer-copy,.footer-links a{color:rgba(255,255,255,0.78)}
+.about-visual,.contact-visual{background:#211b2e!important}
+.creators-more{background:var(--dark2)!important;color:rgba(255,255,255,0.8)!important}
+.hero-bg{opacity:1}
+.hero{background:radial-gradient(70% 60% at 50% 40%,rgba(255,45,120,0.30),transparent 70%),radial-gradient(45% 45% at 82% 72%,rgba(180,79,255,0.22),transparent 70%),var(--black)!important}
+p,.section-desc{color:rgba(255,255,255,0.8)}
+#ive-chat-btn,#ive-chat .ive-head,#ive-chat form,#ive-chat .ive-note{background:#231d30!important}
+#ive-chat{background:#1c1727!important}
+#ive-chat .ive-bot,#ive-chat input{background:#2b2439!important}
 </style>
 </head>
 <body>
