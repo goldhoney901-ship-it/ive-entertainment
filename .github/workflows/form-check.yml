@@ -1,9 +1,0 @@
-name: Form email check
-on: workflow_dispatch
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          R=$(curl -s -m 30 -X POST https://formsubmit.co/ajax/ive-ent@naver.com -H "Content-Type: application/json" -H "Accept: application/json" -H "Referer: https://ive-entertainment.com/" -H "Origin: https://ive-entertainment.com" -d '{"_subject":"[IVE 홈페이지] 지원서 메일 연결 확인 테스트","_template":"table","안내":"홈페이지 지원서가 이 메일로 오는지 확인하는 테스트입니다. 무시하셔도 됩니다."}' || true)
-          echo "::notice::FORM=$R"
