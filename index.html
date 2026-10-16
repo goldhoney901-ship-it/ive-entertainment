@@ -9,18 +9,18 @@
 <style>
 :root {
   --black: #000000;
-  --dark: #080808;
-  --dark2: #0f0f0f;
-  --dark3: #161616;
+  --dark: #faf7fa;
+  --dark2: #ffffff;
+  --dark3: #f3eff5;
   --white: #ffffff;
   --cream: #f5f0e8;
   --neon-pink: #ff2d78;
   --neon-blue: #00d4ff;
   --neon-purple: #b44fff;
   --gold: #c9a84c;
-  --text-dim: rgba(255,255,255,0.45);
-  --text-mid: rgba(255,255,255,0.7);
-  --border: rgba(255,255,255,0.07);
+  --text-dim: rgba(26,20,36,0.45);
+  --text-mid: rgba(26,20,36,0.7);
+  --border: rgba(26,20,36,0.07);
   --border-neon: rgba(255,45,120,0.25);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -76,7 +76,7 @@ nav {
   width: 42px; height: 42px;
   border-radius: 50%;
   object-fit: contain;
-  background: #221b30;
+  background: #fdf3f7;
   border: 1px solid rgba(255,45,120,0.3);
 }
 .nav-logo-text {
@@ -157,7 +157,7 @@ nav {
   width: 110px; height: 110px;
   border-radius: 50%;
   object-fit: contain;
-  background: #221b30;
+  background: #fdf3f7;
   margin: 0 auto 32px;
   display: block;
   border: 1px solid rgba(255,45,120,0.4);
@@ -306,7 +306,7 @@ section { padding: 120px 80px; }
   position: absolute; top: 0; left: 0;
   width: 72%; height: 82%;
   object-fit: contain;
-  background: #221b30;
+  background: #fdf3f7;
   border: 1px solid rgba(255,45,120,0.2);
   border-radius: 4px;
   box-shadow: 0 0 60px rgba(255,45,120,0.08);
@@ -551,7 +551,7 @@ section { padding: 120px 80px; }
   color: var(--text-dim); text-transform: uppercase;
 }
 .form-input {
-  background: rgba(255,255,255,0.03);
+  background: rgba(26,20,36,0.03);
   border: 1px solid var(--border);
   padding: 14px 18px;
   font-size: 14px; color: var(--white);
@@ -559,7 +559,7 @@ section { padding: 120px 80px; }
   font-family: inherit;
   border-radius: 0;
 }
-.form-input::placeholder { color: rgba(255,255,255,0.2); }
+.form-input::placeholder { color: rgba(26,20,36,0.2); }
 .form-input:focus {
   border-color: rgba(255,45,120,0.5);
   background: rgba(255,45,120,0.03);
@@ -641,7 +641,7 @@ section { padding: 120px 80px; }
 .contact-visual img {
   width: 88px; height: 88px;
   border-radius: 50%; object-fit: contain;
-  background: #221b30;
+  background: #fdf3f7;
   border: 1px solid rgba(255,45,120,0.3);
   box-shadow: 0 0 40px rgba(255,45,120,0.15);
   margin-bottom: 24px;
@@ -681,7 +681,7 @@ footer {
 .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .footer-logo img {
   width: 30px; height: 30px; border-radius: 50%;
-  object-fit: contain; background: #221b30;
+  object-fit: contain; background: #fdf3f7;
 }
 .footer-logo-text {
   font-family: 'Cormorant Garamond', serif;
@@ -739,10 +739,10 @@ footer {
 </style>
 <style>
 /* 2026-10 홈페이지팀: 모바일·가독성 보정 */
-.form-label{font-size:12px;letter-spacing:1.5px;color:rgba(255,255,255,0.65)}
-.stat-label{font-size:11px;color:rgba(255,255,255,0.6)}
-.footer-copy,.footer-links a{font-size:11px;color:rgba(255,255,255,0.6)}
-.form-input::placeholder{color:rgba(255,255,255,0.4)}
+.form-label{font-size:12px;letter-spacing:1.5px;color:rgba(26,20,36,0.65)}
+.stat-label{font-size:11px;color:rgba(26,20,36,0.6)}
+.footer-copy,.footer-links a{font-size:11px;color:rgba(26,20,36,0.6)}
+.form-input::placeholder{color:rgba(26,20,36,0.4)}
 @media (max-width:900px){
   .ive-films{padding:72px 24px !important}
   .ive-films-grid{grid-template-columns:repeat(2,1fr) !important}
@@ -758,14 +758,14 @@ footer {
 </style>
 <style>
 /* ===== 디자인 다듬기 시안 ===== */
-nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+nav{background:rgba(255,255,255,0.85)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .hero-bg{background:radial-gradient(60% 50% at 50% 38%,rgba(255,45,120,0.22),transparent 70%),radial-gradient(40% 40% at 80% 70%,rgba(180,79,255,0.14),transparent 70%)!important}
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px;opacity:0;animation:fadeUp 1s forwards .8s}
 .hero-btn{padding:16px 30px;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;text-decoration:none;border-radius:999px;transition:transform .25s,box-shadow .25s}
 .hero-btn-main{background:var(--neon-pink);color:#000;box-shadow:0 0 24px rgba(255,45,120,.45)}
 .hero-btn-main:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(255,45,120,.7)}
-.hero-btn-sub{border:1px solid rgba(255,255,255,.35);color:#fff}
-.hero-btn-sub:hover{border-color:#fff;transform:translateY(-2px)}
+.hero-btn-sub{border:1px solid rgba(26,20,36,.35);color:#1a1424}
+.hero-btn-sub:hover{border-color:#1a1424;transform:translateY(-2px)}
 .section-eyebrow{font-size:12px!important;letter-spacing:4px!important}
 .section-title{letter-spacing:1px!important}
 .stat-num{text-shadow:0 0 24px rgba(255,45,120,.25)}
@@ -778,10 +778,10 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
 .ive-films-grid > a{border-radius:16px;overflow:hidden}
 .platform-card,.process-card,.contact-item,.contact-visual-inner{border-radius:18px}
 .process-grid{gap:14px!important;background:transparent!important;border:0!important}
-.process-card{border:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,#101012,#0a0a0b)!important}
+.process-card{border:1px solid rgba(26,20,36,.07);background:linear-gradient(180deg,#ffffff,#faf7fa)!important}
 .process-icon{border-radius:12px;color:var(--neon-pink);width:48px!important;height:48px!important}
-.process-desc{font-size:14px!important;color:rgba(255,255,255,.62)!important}
-.apply-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,45,120,.22);border-radius:24px;padding:44px!important;box-shadow:0 30px 80px rgba(255,45,120,.08)}
+.process-desc{font-size:14px!important;color:rgba(26,20,36,.62)!important}
+.apply-form{background:rgba(26,20,36,.03);border:1px solid rgba(255,45,120,.22);border-radius:24px;padding:44px!important;box-shadow:0 30px 80px rgba(255,45,120,.08)}
 .form-input{border-radius:12px!important}
 .form-submit{border-radius:999px!important;background:var(--neon-pink)!important;color:#000!important;font-weight:700;letter-spacing:3px}
 .form-submit:hover{box-shadow:0 0 30px rgba(255,45,120,.6)}
@@ -797,7 +797,7 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
 .nav-logo-text span{display:none}
 .hero-newlogo{width:min(440px,78vw);height:auto;display:block;margin:0 auto 34px;opacity:0;animation:fadeUp 1s forwards .3s;filter:drop-shadow(0 0 30px rgba(255,45,120,.25))}
 .hero-logo{display:none}
-.onair{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border:1px solid rgba(255,59,48,.45);border-radius:999px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:3px;color:#fff;background:rgba(255,59,48,.08);opacity:0;animation:fadeUp 1s forwards .5s}
+.onair{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border:1px solid rgba(255,59,48,.45);border-radius:999px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:3px;color:#1a1424;background:rgba(255,59,48,.08);opacity:0;animation:fadeUp 1s forwards .5s}
 .onair-dot{width:9px;height:9px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(255,59,48,.7);animation:livepulse 1.6s infinite}
 @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(255,59,48,.7)}70%{box-shadow:0 0 0 10px rgba(255,59,48,0)}100%{box-shadow:0 0 0 0 rgba(255,59,48,0)}}
 .hero-sub{margin-top:26px!important}
@@ -825,9 +825,9 @@ nav{background:rgba(7,7,8,0.72)!important;backdrop-filter:blur(14px);-webkit-bac
 /* 2026-10-16: 더보기, 연락처 통합, 모바일 제목 */
 body{word-break:keep-all}
 .creators-grid.collapsed .creator-card:nth-child(n+11){display:none}
-.creators-more{font-size:13px!important;letter-spacing:.5px!important;line-height:1.7;color:rgba(255,255,255,.7)!important;text-align:center}
+.creators-more{font-size:13px!important;letter-spacing:.5px!important;line-height:1.7;color:rgba(26,20,36,.7)!important;text-align:center}
 .creators-toggle-wrap{display:flex;justify-content:center;margin:28px 0 8px}
-.creators-toggle{padding:14px 34px;border-radius:999px;border:1px solid var(--neon-pink);background:transparent;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .25s,box-shadow .25s}
+.creators-toggle{padding:14px 34px;border-radius:999px;border:1px solid var(--neon-pink);background:transparent;color:#1a1424;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .25s,box-shadow .25s}
 .creators-toggle:hover{background:rgba(255,45,120,.12);box-shadow:0 0 24px rgba(255,45,120,.35)}
 .contact-icon{color:var(--neon-pink)}
 .contact-value a:hover{color:var(--neon-pink)!important}
@@ -842,25 +842,43 @@ body{word-break:keep-all}
 </style>
 <style>
 /* 2026-10 밝기 보정: 전체 톤을 한 단계 밝게 */
-:root{--black:#15111d;--dark:#1c1727;--dark2:#231d30;--dark3:#2b2439;
---text-dim:rgba(255,255,255,0.68);--text-mid:rgba(255,255,255,0.85);--border:rgba(255,255,255,0.12)}
+:root{--black:#15111d;--dark:#ffffff;--dark2:#ffffff;--dark3:#f3eff5;
+--text-dim:rgba(26,20,36,0.68);--text-mid:rgba(26,20,36,0.85);--border:rgba(26,20,36,0.12)}
 body{background:var(--black)}
-nav{background:rgba(21,17,29,0.8)!important}
+nav{background:rgba(255,255,255,0.88)!important}
 .ive-films{background:var(--dark)!important;border-top-color:var(--border)!important}
 .ive-films-grid > a > div:last-child{background:var(--dark2)!important}
-.process-card{background:linear-gradient(180deg,#261f34,#1e1929)!important;border-color:rgba(255,255,255,.12)!important}
-.apply-form{background:rgba(255,255,255,.06)!important}
-.form-input{background:rgba(255,255,255,.07)!important;border-color:rgba(255,255,255,.16)!important}
-.form-input::placeholder{color:rgba(255,255,255,0.55)}
-.form-label,.stat-label,.footer-copy,.footer-links a{color:rgba(255,255,255,0.78)}
-.about-visual,.contact-visual{background:#211b2e!important}
-.creators-more{background:var(--dark2)!important;color:rgba(255,255,255,0.8)!important}
+.process-card{background:linear-gradient(180deg,#ffffff,#fbf8fb)!important;border-color:rgba(26,20,36,.12)!important}
+.apply-form{background:rgba(26,20,36,.06)!important}
+.form-input{background:rgba(26,20,36,.07)!important;border-color:rgba(26,20,36,.16)!important}
+.form-input::placeholder{color:rgba(26,20,36,0.55)}
+.form-label,.stat-label,.footer-copy,.footer-links a{color:rgba(26,20,36,0.78)}
+.about-visual,.contact-visual{background:#fdf3f7!important}
+.creators-more{background:var(--dark2)!important;color:rgba(26,20,36,0.8)!important}
 .hero-bg{opacity:1}
 .hero{background:radial-gradient(70% 60% at 50% 40%,rgba(255,45,120,0.30),transparent 70%),radial-gradient(45% 45% at 82% 72%,rgba(180,79,255,0.22),transparent 70%),var(--black)!important}
-p,.section-desc{color:rgba(255,255,255,0.8)}
-#ive-chat-btn,#ive-chat .ive-head,#ive-chat form,#ive-chat .ive-note{background:#231d30!important}
-#ive-chat{background:#1c1727!important}
-#ive-chat .ive-bot,#ive-chat input{background:#2b2439!important}
+p,.section-desc{color:rgba(26,20,36,0.8)}
+#ive-chat-btn,#ive-chat .ive-head,#ive-chat form,#ive-chat .ive-note{background:#ffffff!important}
+#ive-chat{background:#ffffff!important}
+#ive-chat .ive-bot,#ive-chat input{background:#f3eff5!important}
+</style>
+<style>
+/* 화이트 시안 */
+.hero-scanlines{display:none}
+.creators-grid{background:transparent!important}
+:root{--black:#ffffff;--dark:#faf6f9;--dark2:#ffffff;--dark3:#f3eef4;--white:#1a1424;
+--text-dim:rgba(26,20,36,0.62);--text-mid:rgba(26,20,36,0.8);--border:rgba(26,20,36,0.1);--border-neon:rgba(255,45,120,0.3)}
+body{background:#fff;color:#1a1424}
+.hero{background:radial-gradient(60% 55% at 50% 40%,rgba(255,45,120,0.16),transparent 70%),radial-gradient(40% 40% at 82% 72%,rgba(180,79,255,0.12),transparent 70%),#fff!important}
+.creator-card,.creator-card *{color:#fff}
+.creator-card [class*="tag"],.creator-card [class*="badge"]{color:#ff2d78}
+.stat-num{text-shadow:none!important}
+.process-card,.platform-card,.contact-item,.apply-form{box-shadow:0 10px 30px rgba(26,20,36,0.06)!important;background:#fff!important}
+.form-input{background:#faf7fa!important}
+.nav-cta:hover{color:#fff!important}
+.form-submit{color:#fff!important}
+#ive-chat .ive-user{color:#fff!important}
+.contact-visual,.about-visual > *:first-child{background:#fdf3f7!important}
 </style>
 </head>
 <body>
@@ -873,11 +891,11 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
   <a href="#" class="nav-logo">
     <svg class="nl-mark"  viewBox="0 0 326 160" role="img" aria-label="IVE Entertainment">
 <circle cx="40" cy="24" r="16" fill="#ff3b30"/>
-<rect x="26" y="52" width="28" height="104" rx="6" fill="#ffffff"/>
+<rect x="26" y="52" width="28" height="104" rx="6" fill="#1a1424"/>
 <path d="M 84 52 L 170 52 L 127 156 Z" fill="#ff2d78"/>
-<rect x="196" y="52" width="104" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="91" width="76" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="130" width="104" height="26" rx="6" fill="#ffffff"/>
+<rect x="196" y="52" width="104" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="91" width="76" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="130" width="104" height="26" rx="6" fill="#1a1424"/>
 </svg>
     <span class="nav-logo-text"><span>IVE</span> Entertainment</span>
   </a>
@@ -899,12 +917,12 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
   <div class="hero-content">
     <svg class="hero-newlogo"  viewBox="0 0 326 190" role="img" aria-label="IVE Entertainment">
 <circle cx="40" cy="24" r="16" fill="#ff3b30"/>
-<rect x="26" y="52" width="28" height="104" rx="6" fill="#ffffff"/>
+<rect x="26" y="52" width="28" height="104" rx="6" fill="#1a1424"/>
 <path d="M 84 52 L 170 52 L 127 156 Z" fill="#ff2d78"/>
-<rect x="196" y="52" width="104" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="91" width="76" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="130" width="104" height="26" rx="6" fill="#ffffff"/>
-<path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#ffffff"/></svg>
+<rect x="196" y="52" width="104" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="91" width="76" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="130" width="104" height="26" rx="6" fill="#1a1424"/>
+<path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#1a1424"/></svg>
     
     <h1 class="sr-only">IVE Entertainment</h1>
     <div class="onair"><span class="onair-dot"></span>ON AIR · 크리에이터 모집 중</div>
@@ -939,13 +957,13 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
 
 
 <!-- VIDEO -->
-<section class="ive-films" style="background:#080808;padding:100px 80px;border-top:1px solid rgba(255,255,255,0.07);">
+<section class="ive-films" style="background:#faf7fa;padding:100px 80px;border-top:1px solid rgba(26,20,36,0.07);">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:#ff2d78;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:14px;">
       <span style="width:30px;height:1px;background:#ff2d78;display:block;"></span>
       IVE Entertainment Films
     </div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;letter-spacing:3px;color:#fff;margin-bottom:56px;">광고 <em style="color:#ff2d78;font-style:italic;">영상</em></h2>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;letter-spacing:3px;color:#1a1424;margin-bottom:56px;">광고 <em style="color:#ff2d78;font-style:italic;">영상</em></h2>
     <div class="ive-films-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
 
       <a href="https://youtu.be/O5OG1gLJX78" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(255,45,120,0.2);transition:all 0.3s;"
@@ -960,9 +978,9 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
             </div>
           </div>
         </div>
-        <div style="padding:14px 16px;background:#0f0f0f;">
+        <div style="padding:14px 16px;background:#ffffff;">
           <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#ff2d78;text-transform:uppercase;margin-bottom:6px;">IVE Entertainment</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:400;letter-spacing:1px;">인플루언서 in BIGO - 강남역 미디어월광고</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#1a1424;font-weight:400;letter-spacing:1px;">인플루언서 in BIGO - 강남역 미디어월광고</div>
         </div>
       </a>
       <a href="https://youtu.be/7r7sGwWr8pI" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(255,45,120,0.2);transition:all 0.3s;"
@@ -977,9 +995,9 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
             </div>
           </div>
         </div>
-        <div style="padding:14px 16px;background:#0f0f0f;">
+        <div style="padding:14px 16px;background:#ffffff;">
           <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#ff2d78;text-transform:uppercase;margin-bottom:6px;">IVE Entertainment</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:400;letter-spacing:1px;">BIGO LIVE KOREA (비고라이브 코리아) 광고</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#1a1424;font-weight:400;letter-spacing:1px;">BIGO LIVE KOREA (비고라이브 코리아) 광고</div>
         </div>
       </a>
       <a href="https://youtu.be/2brmhrLaQXA" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(255,45,120,0.2);transition:all 0.3s;"
@@ -994,9 +1012,9 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
             </div>
           </div>
         </div>
-        <div style="padding:14px 16px;background:#0f0f0f;">
+        <div style="padding:14px 16px;background:#ffffff;">
           <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#ff2d78;text-transform:uppercase;margin-bottom:6px;">IVE Entertainment</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:400;letter-spacing:1px;">압구정 신웅빌딩 광고</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#1a1424;font-weight:400;letter-spacing:1px;">압구정 신웅빌딩 광고</div>
         </div>
       </a>
 
@@ -1011,9 +1029,9 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
             </div>
           </div>
         </div>
-        <div style="padding:14px 16px;background:#0f0f0f;">
+        <div style="padding:14px 16px;background:#ffffff;">
           <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#ff2d78;text-transform:uppercase;margin-bottom:6px;">IVE Entertainment</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:400;letter-spacing:1px;">흥부자 끼부자 이벤트 촬영 스케치</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#1a1424;font-weight:400;letter-spacing:1px;">흥부자 끼부자 이벤트 촬영 스케치</div>
         </div>
       </a>
     </div>
@@ -1027,12 +1045,12 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
       <div class="about-img-main">
         <svg class="about-newicon" viewBox="0 0 326 190" role="img" aria-label="IVE Entertainment">
 <circle cx="40" cy="24" r="16" fill="#ff3b30"/>
-<rect x="26" y="52" width="28" height="104" rx="6" fill="#ffffff"/>
+<rect x="26" y="52" width="28" height="104" rx="6" fill="#1a1424"/>
 <path d="M 84 52 L 170 52 L 127 156 Z" fill="#ff2d78"/>
-<rect x="196" y="52" width="104" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="91" width="76" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="130" width="104" height="26" rx="6" fill="#ffffff"/>
-<path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#ffffff"/></svg>
+<rect x="196" y="52" width="104" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="91" width="76" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="130" width="104" height="26" rx="6" fill="#1a1424"/>
+<path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#1a1424"/></svg>
       </div>
       <div class="about-accent">
         <div class="about-accent-num">2019</div>
@@ -1430,7 +1448,7 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
         </div>
         <div class="form-group">
           <label class="form-label">플랫폼 선택</label>
-          <select name="platform" required class="form-input" style="color:rgba(255,255,255,0.5);">
+          <select name="platform" required class="form-input" style="color:rgba(26,20,36,0.5);">
             <option value="">플랫폼 선택</option>
             <option>틱톡 라이브</option>
             <option>비고라이브</option>
@@ -1466,28 +1484,28 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
           <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
           <div>
             <div class="contact-label">전화 문의</div>
-            <div class="contact-value"><a href="tel:05066610164" style="color:#fff;text-decoration:none;">050-6661-0164</a></div>
+            <div class="contact-value"><a href="tel:05066610164" style="color:#1a1424;text-decoration:none;">050-6661-0164</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
           <div>
             <div class="contact-label">이메일 문의</div>
-            <div class="contact-value"><a href="mailto:ive-ent@naver.com" style="color:#fff;text-decoration:none;">ive-ent@naver.com</a></div>
+            <div class="contact-value"><a href="mailto:ive-ent@naver.com" style="color:#1a1424;text-decoration:none;">ive-ent@naver.com</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4c5 0 9 3.1 9 7s-4 7-9 7c-.9 0-1.8-.1-2.6-.3L5 20l1.2-3.6C4.2 15.1 3 13.2 3 11c0-3.9 4-7 9-7z"/></svg></div>
           <div>
             <div class="contact-label">카카오톡</div>
-            <div class="contact-value"><a href="https://open.kakao.com/o/szo3y1jf" target="_blank" style="color:#fff;text-decoration:none;">오픈채팅 바로가기 →</a></div>
+            <div class="contact-value"><a href="https://open.kakao.com/o/szo3y1jf" target="_blank" style="color:#1a1424;text-decoration:none;">오픈채팅 바로가기 →</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></div>
           <div>
             <div class="contact-label">인스타그램</div>
-            <div class="contact-value"><a href="https://www.instagram.com/reel/DOObbIgkzQU/?igsh=MXJiZDdrcDV1ZjYzZg==" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">공식 인스타그램 →</a></div>
+            <div class="contact-value"><a href="https://www.instagram.com/reel/DOObbIgkzQU/?igsh=MXJiZDdrcDV1ZjYzZg==" target="_blank" rel="noopener" style="color:#1a1424;text-decoration:none;">공식 인스타그램 →</a></div>
           </div>
         </div>
       </div>
@@ -1496,12 +1514,12 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
       <div class="contact-visual-inner">
         <svg class="contact-newicon" viewBox="0 0 326 190" role="img" aria-label="IVE Entertainment">
 <circle cx="40" cy="24" r="16" fill="#ff3b30"/>
-<rect x="26" y="52" width="28" height="104" rx="6" fill="#ffffff"/>
+<rect x="26" y="52" width="28" height="104" rx="6" fill="#1a1424"/>
 <path d="M 84 52 L 170 52 L 127 156 Z" fill="#ff2d78"/>
-<rect x="196" y="52" width="104" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="91" width="76" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="130" width="104" height="26" rx="6" fill="#ffffff"/>
-<path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#ffffff"/></svg>
+<rect x="196" y="52" width="104" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="91" width="76" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="130" width="104" height="26" rx="6" fill="#1a1424"/>
+<path d="M38.54500000000001 181.95V184.335H46.03000000000001V186.0H36.55000000000001V176.295H46.01500000000001V177.96H38.54500000000001V180.375H44.665000000000006V181.95Z M66.42500000000001 184.02 65.795 184.275V176.295H67.79V186.0H65.795L57.95000000000001 178.335L58.580000000000005 178.08V186.0H56.58500000000001V176.295H58.580000000000005Z M77.745 176.295H87.97500000000001V177.96H77.745ZM81.87 177.75H83.86500000000001V186.0H81.87Z M99.92500000000001 181.95V184.335H107.41000000000001V186.0H97.93V176.295H107.39500000000001V177.96H99.92500000000001V180.375H106.045V181.95Z M117.965 186.0V176.295H124.55Q125.675 176.295 126.5075 176.6025Q127.34 176.91 127.805 177.5625Q128.27 178.215 128.27 179.235Q128.27 179.925 128.03 180.405Q127.79 180.885 127.36250000000001 181.185Q126.935 181.485 126.38 181.6425Q125.825 181.8 125.19500000000001 181.845L124.985 181.725Q126.035 181.74 126.71000000000001 181.8975Q127.385 182.055 127.7225 182.4675Q128.06 182.88 128.06 183.69V186.0H126.065V183.825Q126.065 183.27 125.87 182.9625Q125.675 182.655 125.1725 182.535Q124.67 182.415 123.72500000000001 182.415H119.96000000000001V186.0ZM119.96000000000001 180.855H124.55Q125.39 180.855 125.83250000000001 180.45Q126.275 180.045 126.275 179.355Q126.275 178.695 125.83250000000001 178.35Q125.39 178.005 124.55 178.005H119.96000000000001Z M138.0 176.295H148.23V177.96H138.0ZM142.125 177.75H144.11999999999998V186.0H142.125Z M159.69999999999996 183.885V182.22H166.11999999999998V183.885ZM157.28499999999997 186.0 161.84499999999997 176.295H164.00499999999997L168.60999999999999 186.0H166.43499999999997L162.44499999999996 177.255H163.40499999999997L159.44499999999996 186.0Z M178.80499999999998 176.295H180.79999999999998V186.0H178.80499999999998Z M201.71999999999997 184.02 201.08999999999997 184.275V176.295H203.08499999999998V186.0H201.08999999999997L193.24499999999998 178.335L193.87499999999997 178.08V186.0H191.87999999999997V176.295H193.87499999999997Z M221.43999999999994 185.01H220.49499999999995L226.07499999999996 176.295H228.06999999999996V186.0H226.07499999999996V178.95L226.55499999999995 179.085L222.09999999999997 186.0H219.86499999999995L215.40999999999994 179.115L215.88999999999996 178.98V186.0H213.89499999999995V176.295H215.88999999999996Z M240.87499999999997 181.95V184.335H248.35999999999996V186.0H238.87999999999997V176.295H248.34499999999997V177.96H240.87499999999997V180.375H246.99499999999998V181.95Z M268.755 184.02 268.125 184.275V176.295H270.12V186.0H268.125L260.28 178.335L260.90999999999997 178.08V186.0H258.91499999999996V176.295H260.90999999999997Z M280.075 176.295H290.30499999999995V177.96H280.075ZM284.2 177.75H286.195V186.0H284.2Z" fill="#1a1424"/></svg>
         <h3>IVE Entertainment</h3>
         <p>크리에이터와 함께 더 큰 미래를<br>만들어 나가겠습니다.</p>
         <div class="cv-btns"><a href="https://open.kakao.com/o/szo3y1jf" target="_blank" rel="noopener" class="cv-kakao">카카오톡으로 문의하기</a></div>
@@ -1516,11 +1534,11 @@ p,.section-desc{color:rgba(255,255,255,0.8)}
   <a href="#" class="footer-logo">
     <svg class="fl-mark"  viewBox="0 0 326 160" role="img" aria-label="IVE Entertainment">
 <circle cx="40" cy="24" r="16" fill="#ff3b30"/>
-<rect x="26" y="52" width="28" height="104" rx="6" fill="#ffffff"/>
+<rect x="26" y="52" width="28" height="104" rx="6" fill="#1a1424"/>
 <path d="M 84 52 L 170 52 L 127 156 Z" fill="#ff2d78"/>
-<rect x="196" y="52" width="104" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="91" width="76" height="26" rx="6" fill="#ffffff"/>
-<rect x="196" y="130" width="104" height="26" rx="6" fill="#ffffff"/>
+<rect x="196" y="52" width="104" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="91" width="76" height="26" rx="6" fill="#1a1424"/>
+<rect x="196" y="130" width="104" height="26" rx="6" fill="#1a1424"/>
 </svg>
     <span class="footer-logo-text">IVE Entertainment</span>
   </a>
@@ -1594,30 +1612,30 @@ function handleSubmit(e) {
 
 <!-- ===== IVE AI 상담 채팅창 시작 ===== -->
 <style>
-#ive-chat-btn{position:fixed;right:22px;bottom:22px;z-index:9990;width:62px;height:62px;border-radius:50%;border:1px solid var(--neon-pink,#ff2d78);background:#0f0f0f;color:#fff;font-size:26px;cursor:pointer;box-shadow:0 0 18px rgba(255,45,120,.55),inset 0 0 12px rgba(255,45,120,.25);transition:transform .2s,box-shadow .2s}
+#ive-chat-btn{position:fixed;right:22px;bottom:22px;z-index:9990;width:62px;height:62px;border-radius:50%;border:1px solid var(--neon-pink,#ff2d78);background:#ffffff;color:#1a1424;font-size:26px;cursor:pointer;box-shadow:0 0 18px rgba(255,45,120,.55),inset 0 0 12px rgba(255,45,120,.25);transition:transform .2s,box-shadow .2s}
 #ive-chat-btn:hover{transform:scale(1.06);box-shadow:0 0 28px rgba(255,45,120,.8),inset 0 0 14px rgba(255,45,120,.35)}
 #ive-chat-btn .ive-dot{position:absolute;top:6px;right:6px;width:10px;height:10px;border-radius:50%;background:var(--neon-pink,#ff2d78);box-shadow:0 0 8px #ff2d78}
-#ive-chat{position:fixed;right:22px;bottom:96px;z-index:9990;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 130px);display:none;flex-direction:column;background:#080808;border:1px solid rgba(255,45,120,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 40px rgba(255,45,120,.25);font-family:'Noto Sans KR',sans-serif;color:#fff}
+#ive-chat{position:fixed;right:22px;bottom:96px;z-index:9990;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 130px);display:none;flex-direction:column;background:#faf7fa;border:1px solid rgba(255,45,120,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 40px rgba(255,45,120,.25);font-family:'Noto Sans KR',sans-serif;color:#1a1424}
 #ive-chat.open{display:flex}
-#ive-chat .ive-head{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px;background:#0f0f0f}
+#ive-chat .ive-head{padding:14px 16px;border-bottom:1px solid rgba(26,20,36,.07);display:flex;align-items:center;gap:10px;background:#ffffff}
 #ive-chat .ive-title{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:.04em}
 #ive-chat .ive-title b{color:var(--neon-pink,#ff2d78);font-weight:600}
-#ive-chat .ive-sub{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.08em}
-#ive-chat .ive-x{margin-left:auto;background:none;border:0;color:rgba(255,255,255,.6);font-size:22px;cursor:pointer;line-height:1}
+#ive-chat .ive-sub{font-family:'DM Mono',monospace;font-size:10px;color:rgba(26,20,36,.45);letter-spacing:.08em}
+#ive-chat .ive-x{margin-left:auto;background:none;border:0;color:rgba(26,20,36,.6);font-size:22px;cursor:pointer;line-height:1}
 #ive-chat .ive-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
 #ive-chat .ive-m{max-width:85%;padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
-#ive-chat .ive-bot{align-self:flex-start;background:#161616;border:1px solid rgba(255,255,255,.07)}
+#ive-chat .ive-bot{align-self:flex-start;background:#f3eff5;border:1px solid rgba(26,20,36,.07)}
 #ive-chat .ive-user{align-self:flex-end;background:var(--neon-pink,#ff2d78);color:#000}
 #ive-chat .ive-m a{color:var(--neon-pink,#ff2d78)}
 #ive-chat .ive-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}
-#ive-chat .ive-chip{background:transparent;border:1px solid rgba(255,45,120,.4);color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+#ive-chat .ive-chip{background:transparent;border:1px solid rgba(255,45,120,.4);color:#1a1424;border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit}
 #ive-chat .ive-chip:hover{background:rgba(255,45,120,.15)}
-#ive-chat form{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(255,255,255,.07);background:#0f0f0f}
-#ive-chat input{flex:1;min-width:0;background:#161616;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px;color:#fff;font-size:14px;font-family:inherit;outline:none}
+#ive-chat form{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(26,20,36,.07);background:#ffffff}
+#ive-chat input{flex:1;min-width:0;background:#f3eff5;border:1px solid rgba(26,20,36,.1);border-radius:10px;padding:10px;color:#1a1424;font-size:14px;font-family:inherit;outline:none}
 #ive-chat input:focus{border-color:rgba(255,45,120,.6)}
 #ive-chat .ive-send{background:var(--neon-pink,#ff2d78);color:#000;border:0;border-radius:10px;padding:0 14px;font-weight:700;cursor:pointer;font-family:inherit}
 #ive-chat .ive-send:disabled{opacity:.5}
-#ive-chat .ive-note{font-size:10.5px;color:rgba(255,255,255,.4);padding:0 12px 10px;background:#0f0f0f;line-height:1.4}
+#ive-chat .ive-note{font-size:10.5px;color:rgba(26,20,36,.4);padding:0 12px 10px;background:#ffffff;line-height:1.4}
 @media (max-width:600px){#ive-chat{right:8px;left:8px;width:auto;bottom:86px;height:70vh}#ive-chat-btn{right:14px;bottom:14px}}
 </style>
 
