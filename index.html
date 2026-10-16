@@ -114,7 +114,8 @@ nav {
 
 /* HERO */
 .hero {
-  height: 100vh;
+  height: 86vh;
+  min-height: 600px;
   position: relative;
   display: flex;
   align-items: center;
@@ -907,8 +908,8 @@ body{word-break:keep-all}
     <div class="stat-label">Founded</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Potential</div>
+    <div class="stat-num">1<span>:</span>1</div>
+    <div class="stat-label">Management</div>
   </div>
 </div>
 
@@ -923,7 +924,7 @@ body{word-break:keep-all}
       IVE Entertainment Films
     </div>
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;letter-spacing:3px;color:#fff;margin-bottom:56px;">광고 <em style="color:#ff2d78;font-style:italic;">영상</em></h2>
-    <div class="ive-films-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <div class="ive-films-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
 
       <a href="https://youtu.be/O5OG1gLJX78" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(255,45,120,0.2);transition:all 0.3s;"
         onmouseover="this.style.borderColor='rgba(255,45,120,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(255,45,120,0.15)'"
@@ -976,8 +977,7 @@ body{word-break:keep-all}
           <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:400;letter-spacing:1px;">압구정 신웅빌딩 광고</div>
         </div>
       </a>
-    </div>
-    <div class="ive-films-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;">
+
       <a href="https://youtu.be/bpCJUatfRgQ" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(255,45,120,0.2);transition:all 0.3s;"
         onmouseover="this.style.borderColor='rgba(255,45,120,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(255,45,120,0.15)'"
         onmouseout="this.style.borderColor='rgba(255,45,120,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
@@ -1428,7 +1428,7 @@ body{word-break:keep-all}
         <input type="checkbox" id="privacy" required>
         <label for="privacy">개인정보 수집 및 이용에 동의합니다. IVE Entertainment는 지원 처리 목적으로만 정보를 사용합니다. (접수 내용은 이메일 전송 서비스 FormSubmit을 거쳐 회사 이메일로 전달됩니다.) <a href="privacy.html" target="_blank" style="color:var(--neon-pink)">개인정보처리방침 보기</a></label>
       </div>
-      <button type="submit" class="form-submit">Submit Application</button>
+      <button type="submit" class="form-submit">지원서 보내기</button>
     </form>
   </div>
 </section>
@@ -1543,7 +1543,7 @@ function handleSubmit(e) {
   let age = now.getFullYear() - b.getFullYear();
   if (now < new Date(now.getFullYear(), b.getMonth(), b.getDate())) age--;
   if (isNaN(age) || age < 19) { alert('만 19세 이상만 지원 가능합니다.'); return; }
-  btn.disabled = true; btn.textContent = 'Sending...';
+  btn.disabled = true; btn.textContent = '보내는 중...';
   fetch('https://formsubmit.co/ajax/ive-ent@naver.com', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -1556,16 +1556,16 @@ function handleSubmit(e) {
     })
   }).then(r => r.json()).then(d => {
     if (!(d && (d.success === true || d.success === 'true'))) throw new Error(d && d.message);
-    btn.textContent = 'Application Submitted ✓';
+    btn.textContent = '지원 완료 ✓';
     btn.style.background = 'var(--neon-pink)'; btn.style.color = 'var(--black)';
     alert('지원서가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.');
     f.reset();
   }).catch(() => {
-    btn.textContent = 'Submit Application';
+    btn.textContent = '지원서 보내기';
     alert('전송에 실패했습니다. 카카오톡 오픈채팅(https://open.kakao.com/o/szo3y1jf)으로 지원해 주세요.');
   }).finally(() => {
     btn.disabled = false;
-    setTimeout(() => { btn.textContent = 'Submit Application'; btn.style.background = ''; btn.style.color = ''; }, 3000);
+    setTimeout(() => { btn.textContent = '지원서 보내기'; btn.style.background = ''; btn.style.color = ''; }, 3000);
   });
 }
 </script>
