@@ -1083,37 +1083,6 @@ body{background:#fff;color:#1a1424}
   <button class="hs-arrow prev" aria-label="이전 화면">‹</button><button class="hs-arrow next" aria-label="다음 화면">›</button>
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat-item">
-    <div class="stat-num">222<span>+</span></div>
-    <div class="stat-label">Creators</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">2<span>+</span></div>
-    <div class="stat-label">Platforms</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">20<span>19</span></div>
-    <div class="stat-label">Founded</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">1<span>:</span>1</div>
-    <div class="stat-label">Management</div>
-  </div>
-</div>
-
-
-
-
-<!-- ROUTE -->
-<section class="route" aria-label="문의 종류 선택">
-  <div class="route-inner">
-    <a class="route-card cr" href="apply.html"><span class="route-for">For Creators</span><span class="route-title">크리에이터 지원</span><span class="route-desc">비고라이브 · 틱톡 라이브에서 방송을 시작하고 싶은 분</span><span class="route-go">지원서 쓰기 →</span></a>
-    <a class="route-card bz" href="business.html"><span class="route-for">For Business</span><span class="route-title">제휴 · 협업 문의</span><span class="route-desc">브랜드 협찬, 광고, 에이전시 제휴를 제안하실 분</span><span class="route-go">제휴 문의하기 →</span></a>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <a href="/" class="footer-logo">
@@ -1325,6 +1294,11 @@ D.forEach(function(d,i){d.addEventListener('click',function(){go(i)})});
 h.querySelector('.hs-arrow.prev').addEventListener('click',function(){go(cur-1)});h.querySelector('.hs-arrow.next').addEventListener('click',function(){go(cur+1)});
 var x0=null;h.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});h.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1));x0=null});
 window.__heroGo=go;reset();})();
+</script>
+<script>
+(function(){var h=document.querySelector('.hero'),f=document.querySelector('footer');if(!h||!f)return;
+function fit(){h.style.height=Math.max(520,window.innerHeight-f.offsetHeight)+'px';h.style.minHeight='0';}
+fit();window.addEventListener('resize',fit);})();
 </script>
 </body>
 </html>

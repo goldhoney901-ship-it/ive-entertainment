@@ -65,7 +65,7 @@ def meta(h, title, desc, path):
 BRAND = '아이브 엔터테인먼트 IVE Entertainment'
 PAGES = {
  'index.html': dict(active='', path='', title=None, desc=None, head=None,
-    body=['HERO','STATS','ROUTE']),
+    body=['HERO']),
  'company.html': dict(active='company', path='company.html', title='회사 소개 | '+BRAND,
     desc='아이브 엔터테인먼트 회사 소개 — 비고라이브·틱톡 라이브 전문 에이전시의 매니지먼트 과정과 크리에이터 지원 내용, 활동 플랫폼을 안내합니다.',
     head=('Company','회사 소개','2019년부터 비고라이브·틱톡 라이브 크리에이터와 함께해 온 IVE를 소개합니다.'),
@@ -95,6 +95,13 @@ for fn, p in PAGES.items():
     h = head if not p['title'] else meta(head, p['title'], p['desc'], p['path'])
     out = h + nav(p['active']) + (page_head(*p['head']) if p['head'] else '')
     out += ''.join(seg[k] for k in p['body']) + tail
+    if fn == 'index.html':
+        out = out.replace('</body>', '''<script>
+(function(){var h=document.querySelector('.hero'),f=document.querySelector('footer');if(!h||!f)return;
+function fit(){h.style.height=Math.max(520,window.innerHeight-f.offsetHeight)+'px';h.style.minHeight='0';}
+fit();window.addEventListener('resize',fit);})();
+</script>
+</body>''', 1)
     out = links(out)
     open(os.path.join(ROOT, fn), 'w', encoding='utf-8').write(out)
     print(fn, len(out)//1024, 'KB')
