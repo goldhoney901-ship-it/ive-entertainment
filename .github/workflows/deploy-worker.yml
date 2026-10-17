@@ -60,7 +60,7 @@ jobs:
           sleep 10
           R=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"크리에이터 지원은 어떻게 하나요?"}]}' -w ' HTTP%{http_code}')
           echo "::notice::TEST=$(echo "$R" | tr '\n' ' ' | cut -c1-600)"
-          L=$(curl -s -m 90 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"저희는 에이전시인데, 장비랑 스튜디오까지 다 지원해 줬는데 소속 BJ가 해준 게 없다고 우기면서 폭로하겠대요. 어떻게 대응해야 하나요?"}]}' -w ' HTTP%{http_code}')
+          L=$(curl -s -m 90 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"지금 틱톡 에이전시랑 계약돼 있는데 비고라이브는 다른 에이전시랑 계약해도 되나요? 이중계약 아닌가요?"}]}' -w ' HTTP%{http_code}')
           echo "::notice::LEGAL_TEST=$(echo "$L" | tr '\n' ' ' | cut -c1-1500)"
           F=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://evil.example" -d '{}')
           echo "::notice::OTHER_ORIGIN_STATUS=$F"
