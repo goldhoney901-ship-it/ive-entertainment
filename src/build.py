@@ -89,7 +89,7 @@ PAGES = {
  'contact.html': dict(active='contact', path='contact.html', title='문의하기 | '+BRAND,
     desc='아이브 엔터테인먼트 연락처 — 전화, 이메일, 카카오톡 오픈채팅, 인스타그램으로 문의하실 수 있습니다.',
     head=('Contact','문의하기','편한 방법으로 연락 주세요.'),
-    body=['CONTACTCARDS','CONTACT']),
+    body=['CONTACT']),
 }
 for fn, p in PAGES.items():
     h = head if not p['title'] else meta(head, p['title'], p['desc'], p['path'])
