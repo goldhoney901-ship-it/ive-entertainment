@@ -8,7 +8,7 @@ M = open(os.path.join(ROOT, 'src/master.html'), encoding='utf-8').read()
 SITE = 'https://ive-entertainment.com/'
 
 MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- STATS -->','<!-- VIDEO -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
-         '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
+         '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- GUIDE -->','<!-- GUIDETT -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
 pos = []
 for m in MARKS:
     assert M.count(m) == 1, m
@@ -23,7 +23,7 @@ NAV_LINKS = '''<button class="nav-burger" type="button" aria-label="메뉴 열�
     <li><a href="company.html"{a_company}>Company</a></li>
     <li><a href="creators.html"{a_creators}>Creators</a></li>
     <li class="has-sub"><a href="apply.html"{a_apply}>Apply</a>
-      <ul class="sub"><li><a href="apply.html">Creator · 크리에이터 지원</a></li><li><a href="business.html">Business · 제휴 문의</a></li></ul>
+      <ul class="sub"><li><a href="apply.html">Creator · 크리에이터 지원</a></li><li><a href="bigolive-agency.html">Guide · 비고라이브 소속사 가이드</a></li><li><a href="tiktok-live-agency.html">Guide · 틱톡 라이브 소속사 가이드</a></li><li><a href="business.html">Business · 제휴 문의</a></li></ul>
     </li>
     <li><a href="news.html"{a_news}>News</a></li>
     <li><a href="contact.html"{a_contact}>Contact</a></li>
@@ -82,6 +82,14 @@ PAGES = {
     desc='아이브 엔터테인먼트 제휴·협업 문의 — 브랜드 협찬, 광고, 에이전시 제휴, 공동 이벤트 제안을 받습니다.',
     head=('Business','제휴 · 협업 문의','브랜드 협찬, 광고, 에이전시 제휴 제안을 기다립니다.'),
     body=['BUSINESS']),
+ 'bigolive-agency.html': dict(active='apply', path='bigolive-agency.html', title='비고라이브 소속사(에이전시) 가입 가이드 | 비고라이브 공식 에이전시 아이브 엔터테인먼트',
+    desc='비고라이브 소속사(공식 에이전시)란 무엇인지, 소속사에 들어가면 좋은 점, 가입 절차, 소속사 고르는 체크리스트와 자주 묻는 질문을 정리했습니다. 비고라이브 공식 에이전시 아이브 엔터테인먼트.',
+    head=('Guide','비고라이브 소속사 가이드','비고라이브 공식 에이전시 가입 방법과 소속사 고르는 법'),
+    body=['GUIDE']),
+ 'tiktok-live-agency.html': dict(active='apply', path='tiktok-live-agency.html', title='틱톡 라이브 소속사(에이전시) 가입 가이드 | 틱톡 라이브 전문 에이전시 아이브 엔터테인먼트',
+    desc='틱톡 라이브 소속사(에이전시)란 무엇인지, 소속사에 들어가면 좋은 점, 가입 절차, 소속사 고르는 체크리스트와 자주 묻는 질문을 정리했습니다. 틱톡 라이브 전문 에이전시 아이브 엔터테인먼트.',
+    head=('Guide','틱톡 라이브 소속사 가이드','틱톡 라이브 에이전시 가입 방법과 소속사 고르는 법'),
+    body=['GUIDETT']),
  'news.html': dict(active='news', path='news.html', title='소식 | '+BRAND,
     desc='아이브 엔터테인먼트 소식 — 강남역 미디어월, 압구정 신웅빌딩 광고 등 IVE 크리에이터가 함께한 비고라이브 광고 영상과 새로운 소식을 전합니다.',
     head=('News','소식','IVE 크리에이터와 함께한 광고 영상과 새로운 소식'),
@@ -102,6 +110,11 @@ function fit(){h.style.height=Math.max(520,window.innerHeight-f.offsetHeight)+'p
 fit();window.addEventListener('resize',fit);})();
 </script>
 </body>''', 1)
+    if fn in ('bigolive-agency.html','tiktok-live-agency.html'):
+        import json as _j
+        faq={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+          {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',out)]}
+        out=out.replace('</head>','<script type="application/ld+json">'+_j.dumps(faq,ensure_ascii=False)+'</script>\n</head>',1)
     out = links(out)
     open(os.path.join(ROOT, fn), 'w', encoding='utf-8').write(out)
     print(fn, len(out)//1024, 'KB')

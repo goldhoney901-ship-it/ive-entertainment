@@ -732,6 +732,33 @@ footer { padding-right: 130px !important; }
   .founder-line { grid-template-columns: 1fr; }
 }
 
+/* GUIDE */
+.guide { background: #fff; padding-top: 70px; }
+.guide-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 230px 1fr; gap: 56px; align-items: start; }
+.guide-toc { position: sticky; top: 100px; display: grid; gap: 4px; border-left: 2px solid rgba(255,45,120,0.25); padding-left: 16px; }
+.guide-toc a { font-size: 14px; color: #2b2438; text-decoration: none; padding: 6px 0; }
+.guide-toc a:hover { color: var(--neon-pink); }
+.guide-body { min-width: 0; color: #2b2438; }
+.guide-body h2 { font-size: 26px; font-weight: 700; color: #1a1424; margin: 0 0 16px; padding-top: 10px; scroll-margin-top: 90px; }
+.guide-body h2:not(:first-child) { margin-top: 56px; }
+.guide-body p { font-size: 16px; line-height: 1.9; margin: 0 0 14px; }
+.guide-body b { color: #1a1424; }
+.guide-body ul { padding-left: 20px; display: grid; gap: 8px; font-size: 16px; line-height: 1.8; }
+.guide-note { font-size: 14px !important; color: #4a4258 !important; background: #faf6f9; border-radius: 10px; padding: 12px 16px; }
+.guide-steps { list-style: none; padding: 0; counter-reset: st; display: grid; gap: 12px; }
+.guide-steps li { counter-increment: st; display: grid; gap: 4px; padding: 16px 18px 16px 62px; border: 1px solid rgba(26,20,36,0.1); border-radius: 14px; position: relative; }
+.guide-steps li::before { content: counter(st); position: absolute; left: 18px; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: var(--neon-pink); color: #fff; display: grid; place-items: center; font-weight: 700; }
+.guide-steps b { font-size: 16px; color: #1a1424; }
+.guide-steps span { font-size: 15px; line-height: 1.7; }
+.guide-cta { display: inline-block; margin-top: 6px; background: var(--neon-pink); color: #fff !important; padding: 12px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+.guide-check { list-style: none; padding: 0 !important; }
+.guide-check li { padding-left: 30px; position: relative; }
+.guide-check li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--neon-pink); font-weight: 700; }
+.guide-body details { border: 1px solid rgba(26,20,36,0.1); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+.guide-body summary { cursor: pointer; font-weight: 700; color: #1a1424; font-size: 16px; }
+.guide-body details p { margin: 10px 0 0; font-size: 15px; }
+@media (max-width: 900px) { .guide-inner { grid-template-columns: 1fr; gap: 24px; } .guide-toc { position: static; } .guide-body h2 { font-size: 22px; } }
+
 /* SUPPORT */
 .support { background: #ffffff; }
 .support-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
@@ -1148,7 +1175,7 @@ body{background:#fff;color:#1a1424}
     <li><a href="company.html">Company</a></li>
     <li><a href="creators.html">Creators</a></li>
     <li class="has-sub"><a href="apply.html" aria-current="page">Apply</a>
-      <ul class="sub"><li><a href="apply.html">Creator · 크리에이터 지원</a></li><li><a href="business.html">Business · 제휴 문의</a></li></ul>
+      <ul class="sub"><li><a href="apply.html">Creator · 크리에이터 지원</a></li><li><a href="bigolive-agency.html">Guide · 비고라이브 소속사 가이드</a></li><li><a href="tiktok-live-agency.html">Guide · 틱톡 라이브 소속사 가이드</a></li><li><a href="business.html">Business · 제휴 문의</a></li></ul>
     </li>
     <li><a href="news.html">News</a></li>
     <li><a href="contact.html">Contact</a></li>
