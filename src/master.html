@@ -696,6 +696,13 @@ footer { padding-right: 130px !important; }
   .intro { padding-top: 60px; }
 }
 
+.platforms-more { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+.pm-card { border: 1px solid rgba(26,20,36,0.1); border-radius: 16px; background: #fff; padding: 22px 12px; display: grid; gap: 4px; text-align: center; }
+.pm-card b { font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: 3px; color: #1a1424; }
+.pm-card span { font-size: 13px; color: #4a4258; }
+.platforms-note { margin-top: 26px; font-size: 14px; color: #2b2438; text-align: center; }
+@media (max-width: 600px) { .platforms-more { grid-template-columns: 1fr; } }
+
 /* SUPPORT */
 .support { background: #ffffff; }
 .support-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
@@ -733,7 +740,7 @@ footer { padding-right: 130px !important; }
 /* BUSINESS */
 .biz { border-top: 1px solid var(--border); }
 .biz-types { display: flex; flex-wrap: wrap; gap: 8px; }
-.biz-types label { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--border); font-size: 13px; color: var(--white); cursor: pointer; transition: all .2s; }
+.biz-types label { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--border); font-size: 13px; color: var(--white); cursor: pointer; transition: all .2s; }
 .biz-types input { accent-color: var(--neon-pink); }
 .biz-types label:has(input:checked) { border-color: var(--neon-pink); background: rgba(255,45,120,0.05); }
 .biz textarea.form-input { min-height: 140px; resize: vertical; line-height: 1.6; }
@@ -1391,6 +1398,12 @@ body{background:#fff;color:#1a1424}
         <p class="platform-desc">비고라이브를 통해 안정적인 수익 구조를 만들어 드립니다. 비고라이브 전문 매니지먼트로 빠른 성장을 지원합니다.</p>
       </div>
     </div>
+    <div class="platforms-more reveal">
+      <div class="pm-card"><b>SOOP LIVE</b><span>숲 라이브</span></div>
+      <div class="pm-card"><b>PANDA TV</b><span>판다티비</span></div>
+      <div class="pm-card"><b>YOUTUBE</b><span>유튜브 라이브 · 쇼츠</span></div>
+    </div>
+    <p class="platforms-note">비고라이브 · 틱톡 라이브를 중심으로 숲 · 판다티비 · 유튜브 활동도 상담해 드립니다.</p>
   </div>
 </section>
 
@@ -1711,22 +1724,24 @@ body{background:#fff;color:#1a1424}
           <input type="text" name="birth" required maxlength="10" class="form-input" placeholder="YYYY-MM-DD">
         </div>
         <div class="form-group">
-          <label class="form-label">플랫폼 선택</label>
-          <select name="platform" required class="form-input" style="color:rgba(26,20,36,0.5);">
-            <option value="">플랫폼 선택</option>
-            <option>틱톡 라이브</option>
-            <option>비고라이브</option>
-            <option>둘 다</option>
-          </select>
+          <label class="form-label">방송 경험</label>
+          <input type="text" name="experience" maxlength="300" class="form-input" placeholder="이전 방송 경험을 간단히 작성해 주세요">
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">틱톡 / SNS URL</label>
-        <input type="url" name="sns" maxlength="200" class="form-input" placeholder="https://www.tiktok.com/@...">
+        <span class="form-label">관심 있는 플랫폼 (여러 개 선택 가능)</span>
+        <div class="biz-types plat-types">
+          <label><input type="checkbox" name="platforms" value="비고라이브">비고라이브</label>
+          <label><input type="checkbox" name="platforms" value="틱톡 라이브">틱톡 라이브</label>
+          <label><input type="checkbox" name="platforms" value="숲 라이브">숲 라이브 (SOOP)</label>
+          <label><input type="checkbox" name="platforms" value="판다티비">판다티비</label>
+          <label><input type="checkbox" name="platforms" value="유튜브">유튜브</label>
+          <label><input type="checkbox" name="platforms" value="잘 모르겠어요">잘 모르겠어요</label>
+        </div>
       </div>
       <div class="form-group">
-        <label class="form-label">방송 경험</label>
-        <input type="text" name="experience" maxlength="300" class="form-input" placeholder="이전 방송 경험을 간단히 작성해 주세요">
+        <label class="form-label">SNS 주소 (틱톡 · 인스타 · 유튜브 등)</label>
+        <input type="url" name="sns" maxlength="200" class="form-input" placeholder="https://www.tiktok.com/@...">
       </div>
       <div class="form-group">
         <label class="form-label">IVE를 알게 된 경로</label>
@@ -1932,6 +1947,7 @@ function handleSubmit(e) {
   let age = now.getFullYear() - b.getFullYear();
   if (now < new Date(now.getFullYear(), b.getMonth(), b.getDate())) age--;
   if (isNaN(age) || age < 19) { alert('만 19세 이상만 지원 가능합니다.'); return; }
+  if (!f.querySelector('input[name="platforms"]:checked')) { alert('관심 있는 플랫폼을 하나 이상 선택해 주세요.'); return; }
   btn.disabled = true; btn.textContent = '보내는 중...';
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
@@ -1941,7 +1957,7 @@ function handleSubmit(e) {
       subject: '[IVE 홈페이지] 크리에이터 지원서 - ' + v('name'),
       from_name: 'IVE 홈페이지 지원서', botcheck: '',
       '이름': v('name'), '연락처': v('phone'), '생년월일': v('birth'),
-      '플랫폼': v('platform'), 'SNS URL': v('sns'), '방송 경험': v('experience'),
+      '관심 플랫폼': [...f.querySelectorAll('input[name="platforms"]:checked')].map(x=>x.value).join(', '), 'SNS URL': v('sns'), '방송 경험': v('experience'),
       '알게 된 경로': v('source') || '(선택 안 함)', '미리 궁금한 점': v('question') || '(없음)',
       '개인정보 동의': f.querySelector('#privacy').checked ? '동의' : '미동의'
     })
