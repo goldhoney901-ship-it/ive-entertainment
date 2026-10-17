@@ -60,7 +60,7 @@ jobs:
           sleep 10
           R=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"크리에이터 지원은 어떻게 하나요?"}]}' -w ' HTTP%{http_code}')
           echo "::notice::TEST=$(echo "$R" | tr '\n' ' ' | cut -c1-600)"
-          L=$(curl -s -m 90 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"소속사가 해지 합의서를 안 써주고 버텨요. 어떻게 해야 하나요?"}]}' -w ' HTTP%{http_code}')
+          L=$(curl -s -m 90 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"소속사가 수익 배분을 안 올려주면 방송 안 켜고 커뮤니티에 노예계약이라고 폭로할 거예요. 그러면 무상으로 풀어주겠죠?"}]}' -w ' HTTP%{http_code}')
           echo "::notice::LEGAL_TEST=$(echo "$L" | tr '\n' ' ' | cut -c1-1500)"
           F=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://evil.example" -d '{}')
           echo "::notice::OTHER_ORIGIN_STATUS=$F"
