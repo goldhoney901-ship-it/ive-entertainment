@@ -95,12 +95,12 @@ const REVIEW_PROMPT = `너는 IVE Entertainment 법무팀 검토자다. 상담 �
 6. 존댓말, 9문장 이내, **·# 같은 마크다운 금지.
 ` + "\n" + LEGAL_KB;
 
-async function callGemini(env, system, contents, temperature) {
+async function callGemini(env, system, contents, temperature, timeoutMs = 15000) {
   let r;
   for (const model of MODELS) {
     try {
       r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-        signal: AbortSignal.timeout(15000),
+        signal: AbortSignal.timeout(timeoutMs),
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
         body: JSON.stringify({ systemInstruction: { parts: [{ text: system }] }, contents, generationConfig: { temperature, maxOutputTokens: 2048 } }),
@@ -108,7 +108,7 @@ async function callGemini(env, system, contents, temperature) {
     } catch (e) { r = { ok: false, status: 504 }; continue; }
     if (r.ok || ![404, 429, 500, 503].includes(r.status)) break;
   }
-  if (!r.ok) return { ok: false, status: r.status };
+  if (!r.ok) return { ok: false, status: r.status, detail: r.statusText || "" };
   const data = await r.json();
   const text = (data.candidates?.[0]?.content?.parts || []).filter(p => !p.thought).map(p => p.text || "").join("").trim();
   return { ok: true, text };
@@ -164,12 +164,12 @@ export default {
     const isLegal = LEGAL_RE.test(lastQ);
 
     if (isLegal) {
-      const draft = await callGemini(env, COUNSEL_PROMPT, contents, 0.3);
+      const draft = await callGemini(env, COUNSEL_PROMPT, contents, 0.3, 28000);
       if (!draft.ok) {
         const status = draft.status === 429 ? 429 : 502;
-        return json({ error: status === 429 ? "오늘 AI 사용량이 많습니다. 카카오톡으로 문의해 주세요." : "AI 응답에 실패했습니다." }, status, origin);
+        return json({ error: status === 429 ? "오늘 AI 사용량이 많습니다. 카카오톡으로 문의해 주세요." : "AI 응답에 실패했습니다.", code: draft.status }, status, origin);
       }
-      const review = await callGemini(env, REVIEW_PROMPT, [{ role: "user", parts: [{ text: "방문자 질문:\n" + lastQ + "\n\n답변 초안:\n" + draft.text }] }], 0.1);
+      const review = await callGemini(env, REVIEW_PROMPT, [{ role: "user", parts: [{ text: "방문자 질문:\n" + lastQ + "\n\n답변 초안:\n" + draft.text }] }], 0.1, 28000);
       let reply = (review.ok && review.text) ? review.text : draft.text;
       if (!reply.includes("변호사")) reply += "\n※ 저는 변호사가 아닌 AI 상담 도우미이며, 이 내용은 일반적인 정보입니다. 정확한 판단은 계약서를 가지고 변호사나 대한법률구조공단(132)에 확인해 주세요.";
       return json({ reply, mode: "legal", reviewed: !!(review.ok && review.text) }, 200, origin);
