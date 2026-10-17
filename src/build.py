@@ -7,8 +7,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 M = open(os.path.join(ROOT, 'src/master.html'), encoding='utf-8').read()
 SITE = 'https://ive-entertainment.com/'
 
-MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- STATS -->','<!-- VIDEO -->','<!-- ABOUT -->','<!-- PROCESS -->',
-         '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- CONTACT -->','<!-- FOOTER -->']
+MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- STATS -->','<!-- VIDEO -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
+         '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
 pos = []
 for m in MARKS:
     assert M.count(m) == 1, m
@@ -69,7 +69,7 @@ PAGES = {
  'company.html': dict(active='company', path='company.html', title='회사 소개 | '+BRAND,
     desc='아이브 엔터테인먼트 회사 소개 — 비고라이브·틱톡 라이브 전문 에이전시의 매니지먼트 과정과 크리에이터 지원 내용, 활동 플랫폼을 안내합니다.',
     head=('Company','회사 소개','2019년부터 비고라이브·틱톡 라이브 크리에이터와 함께해 온 IVE를 소개합니다.'),
-    body=['ABOUT','PROCESS','PLATFORMS']),
+    body=['INTRO','ABOUT','PROCESS','PLATFORMS']),
  'creators.html': dict(active='creators', path='creators.html', title='크리에이터 | '+BRAND,
     desc='아이브 엔터테인먼트와 함께 활동 중인 비고라이브·틱톡 라이브 크리에이터를 소개합니다. 현재 222명 이상의 크리에이터가 IVE와 함께하고 있습니다.',
     head=('Creators','크리에이터','지금 IVE와 함께 방송하고 있는 크리에이터들'),
@@ -89,7 +89,7 @@ PAGES = {
  'contact.html': dict(active='contact', path='contact.html', title='문의하기 | '+BRAND,
     desc='아이브 엔터테인먼트 연락처 — 전화, 이메일, 카카오톡 오픈채팅, 인스타그램으로 문의하실 수 있습니다.',
     head=('Contact','문의하기','편한 방법으로 연락 주세요.'),
-    body=['CONTACT']),
+    body=['CONTACTCARDS','CONTACT']),
 }
 for fn, p in PAGES.items():
     h = head if not p['title'] else meta(head, p['title'], p['desc'], p['path'])

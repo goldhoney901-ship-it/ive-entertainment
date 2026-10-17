@@ -645,10 +645,52 @@ nav.open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 .page-head-en, .page-head-ko { color: #fff !important; }
 .page-head + .apply .section-eyebrow, .page-head + .apply .section-title,
 .page-head + .contact .section-eyebrow, .page-head + .contact .section-title,
-.page-head + .creators .section-eyebrow, .page-head + .creators .section-title { display: none; }
+.page-head + .creators .section-eyebrow, .page-head + .creators .section-title,
+.ccards + .contact .section-eyebrow, .ccards + .contact .section-title { display: none; }
 .page-head + .creators { padding-top: 70px; }
 .page-head + .apply { padding-top: 70px; }
 @media (max-width: 900px) { .page-head { padding: 120px 24px 56px; } .page-head-en { letter-spacing: 3px; } }
+
+/* HERO MOTTO & TAGS */
+.hero-motto { margin-top: 26px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 5px; color: #1a1424; opacity: .7; }
+.hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+.hero-tags span { font-size: 12px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(255,45,120,0.35); color: #1a1424; background: rgba(255,255,255,0.6); }
+/* COMPANY INTRO */
+.intro { background: #fff; padding-top: 90px; padding-bottom: 40px; }
+.intro-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+.intro-slogan { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 6.5vw, 84px); line-height: 1.12; color: #1a1424; letter-spacing: 1px; text-wrap: balance; }
+.intro-slogan em { color: var(--neon-pink); font-style: italic; }
+.intro-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
+.ib { font-size: 13px; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(26,20,36,0.12); color: #1a1424; }
+.ib-main { background: var(--neon-pink); border-color: var(--neon-pink); color: #fff; font-weight: 700; }
+.platform-badge { display: inline-block; margin: 4px auto 10px; font-size: 12px; padding: 4px 12px; border-radius: 999px; background: rgba(255,45,120,0.1); color: var(--neon-pink); font-weight: 700; }
+/* FORM CLOSING */
+.form-closing { margin-top: 56px; padding-top: 36px; border-top: 1px solid rgba(26,20,36,0.08); text-align: center; }
+.form-closing em { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #1a1424; }
+.form-closing p { margin-top: 10px; font-size: 14px; line-height: 1.8; color: var(--text-mid); }
+/* CONTACT CARDS */
+.ccards { background: #1a1424; padding-top: 90px; padding-bottom: 90px; }
+.ccards-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.ccard { border-radius: 18px; overflow: hidden; background: #241c30; display: grid; }
+.ccard-top { padding: 30px 28px; display: grid; gap: 6px; }
+.ccard.cr .ccard-top { background: #ff2d78; color: #fff; }
+.ccard.bz .ccard-top { background: #7ff0e4; color: #1a1424; }
+.ccard-for { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: .85; }
+.ccard-top strong { font-size: 26px; }
+.ccard-sub { font-size: 13px; opacity: .9; }
+.ccard-bottom { display: flex; align-items: center; gap: 18px; padding: 22px 28px; color: rgba(255,255,255,0.8); font-size: 13px; line-height: 1.6; }
+.ccard-bottom img { background: #fff; border-radius: 8px; padding: 4px; flex: none; }
+.ccard-bottom a { display: inline-block; margin-top: 8px; color: #fff; font-weight: 700; text-decoration: none; }
+/* FOOTER INFO */
+.footer-info { display: grid; gap: 6px; }
+.footer-contact { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 11px; color: var(--text-mid); }
+.footer-contact a { color: var(--neon-pink); text-decoration: none; }
+@media (max-width: 900px) {
+  .ccards { padding-top: 56px; padding-bottom: 56px; }
+  .ccards-inner { grid-template-columns: 1fr; }
+  .footer-contact { justify-content: center; }
+  .intro { padding-top: 60px; }
+}
 
 /* SUPPORT */
 .support { background: #ffffff; }
@@ -1103,6 +1145,7 @@ body{background:#fff;color:#1a1424}
       </div>
       <button type="submit" class="form-submit">제휴 문의 보내기</button>
     </form>
+    <div class="form-closing reveal"><em>Let's grow together.</em><p>좋은 제안은 끝까지 함께합니다.<br>IVE가 든든한 파트너가 되겠습니다.</p></div>
   </div>
 </section>
 
@@ -1119,7 +1162,10 @@ body{background:#fff;color:#1a1424}
 </svg>
     <span class="footer-logo-text">IVE Entertainment</span>
   </a>
-  <p class="footer-copy">© 2026 아이브 엔터테인먼트. All rights reserved.</p>
+  <div class="footer-info">
+    <p class="footer-contact"><span>BIGO LIVE 공식 에이전시</span><span>E-mail : ive-ent@naver.com</span><span>Tel : 050-6661-0164</span><span>카카오톡 오픈채팅 : <a href="https://open.kakao.com/o/szo3y1jf" target="_blank" rel="noopener">바로가기</a></span></p>
+    <p class="footer-copy">© 2026 아이브 엔터테인먼트. All rights reserved.</p>
+  </div>
   <ul class="footer-links">
     <li><a href="company.html#about">About</a></li>
     <li><a href="creators.html">Creators</a></li>

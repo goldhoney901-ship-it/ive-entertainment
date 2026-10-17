@@ -645,10 +645,52 @@ nav.open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 .page-head-en, .page-head-ko { color: #fff !important; }
 .page-head + .apply .section-eyebrow, .page-head + .apply .section-title,
 .page-head + .contact .section-eyebrow, .page-head + .contact .section-title,
-.page-head + .creators .section-eyebrow, .page-head + .creators .section-title { display: none; }
+.page-head + .creators .section-eyebrow, .page-head + .creators .section-title,
+.ccards + .contact .section-eyebrow, .ccards + .contact .section-title { display: none; }
 .page-head + .creators { padding-top: 70px; }
 .page-head + .apply { padding-top: 70px; }
 @media (max-width: 900px) { .page-head { padding: 120px 24px 56px; } .page-head-en { letter-spacing: 3px; } }
+
+/* HERO MOTTO & TAGS */
+.hero-motto { margin-top: 26px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 5px; color: #1a1424; opacity: .7; }
+.hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+.hero-tags span { font-size: 12px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(255,45,120,0.35); color: #1a1424; background: rgba(255,255,255,0.6); }
+/* COMPANY INTRO */
+.intro { background: #fff; padding-top: 90px; padding-bottom: 40px; }
+.intro-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+.intro-slogan { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 6.5vw, 84px); line-height: 1.12; color: #1a1424; letter-spacing: 1px; text-wrap: balance; }
+.intro-slogan em { color: var(--neon-pink); font-style: italic; }
+.intro-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
+.ib { font-size: 13px; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(26,20,36,0.12); color: #1a1424; }
+.ib-main { background: var(--neon-pink); border-color: var(--neon-pink); color: #fff; font-weight: 700; }
+.platform-badge { display: inline-block; margin: 4px auto 10px; font-size: 12px; padding: 4px 12px; border-radius: 999px; background: rgba(255,45,120,0.1); color: var(--neon-pink); font-weight: 700; }
+/* FORM CLOSING */
+.form-closing { margin-top: 56px; padding-top: 36px; border-top: 1px solid rgba(26,20,36,0.08); text-align: center; }
+.form-closing em { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #1a1424; }
+.form-closing p { margin-top: 10px; font-size: 14px; line-height: 1.8; color: var(--text-mid); }
+/* CONTACT CARDS */
+.ccards { background: #1a1424; padding-top: 90px; padding-bottom: 90px; }
+.ccards-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.ccard { border-radius: 18px; overflow: hidden; background: #241c30; display: grid; }
+.ccard-top { padding: 30px 28px; display: grid; gap: 6px; }
+.ccard.cr .ccard-top { background: #ff2d78; color: #fff; }
+.ccard.bz .ccard-top { background: #7ff0e4; color: #1a1424; }
+.ccard-for { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: .85; }
+.ccard-top strong { font-size: 26px; }
+.ccard-sub { font-size: 13px; opacity: .9; }
+.ccard-bottom { display: flex; align-items: center; gap: 18px; padding: 22px 28px; color: rgba(255,255,255,0.8); font-size: 13px; line-height: 1.6; }
+.ccard-bottom img { background: #fff; border-radius: 8px; padding: 4px; flex: none; }
+.ccard-bottom a { display: inline-block; margin-top: 8px; color: #fff; font-weight: 700; text-decoration: none; }
+/* FOOTER INFO */
+.footer-info { display: grid; gap: 6px; }
+.footer-contact { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 11px; color: var(--text-mid); }
+.footer-contact a { color: var(--neon-pink); text-decoration: none; }
+@media (max-width: 900px) {
+  .ccards { padding-top: 56px; padding-bottom: 56px; }
+  .ccards-inner { grid-template-columns: 1fr; }
+  .footer-contact { justify-content: center; }
+  .intro { padding-top: 60px; }
+}
 
 /* SUPPORT */
 .support { background: #ffffff; }
@@ -1060,8 +1102,8 @@ body{background:#fff;color:#1a1424}
     <div class="onair"><span class="onair-dot"></span>ON AIR · 크리에이터 모집 중</div>
     <p class="hero-sub">크리에이터와 함께 성장하는 기업</p>
     
-    <div class="hero-line"></div>
-    <div class="hero-scroll-text">Scroll to explore</div>
+    <div class="hero-motto">LIVE YOUR DREAM WITH IVE</div>
+    <div class="hero-tags"><span>토크</span><span>노래</span><span>댄스</span><span>소통</span><span>게임</span></div>
   </div>
   </div>
   <div class="hs hs2" data-i="1" aria-hidden="true">
@@ -1187,6 +1229,19 @@ body{background:#fff;color:#1a1424}
   </div>
 </section>
 
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-inner reveal">
+    <h2 class="intro-slogan">크리에이터의<br>가능성을 <em>현실로</em></h2>
+    <div class="intro-badges">
+      <span class="ib ib-main">BIGO LIVE 공식 에이전시</span>
+      <span class="ib">TikTok LIVE 전문 에이전시</span>
+      <span class="ib">Since 2019</span>
+      <span class="ib">222+ Creators</span>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
@@ -1208,7 +1263,7 @@ body{background:#fff;color:#1a1424}
     </div>
     <div class="about-content reveal">
       <div class="section-eyebrow">About Us</div>
-      <h2 class="section-title">크리에이터의<br>가능성을 <em>현실로</em></h2>
+      <h2 class="section-title">한 명 한 명의<br>개성을 <em>소중히</em></h2>
       <p>IVE Entertainment는 크리에이터 한 명 한 명의 개성과 재능을 소중히 여기며, 함께 더 큰 꿈을 현실로 만들어 나가는 기업입니다.</p>
       <p>라이브 방송을 통한 전문적인 지원과 데이터 기반의 맞춤 전략으로 크리에이터가 최고의 성과를 낼 수 있도록 함께합니다.</p>
       <div class="about-features">
@@ -1307,6 +1362,7 @@ body{background:#fff;color:#1a1424}
           <img src="data:image/png;base64,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" alt="TikTok">
         </div>
         <div class="platform-name">TikTok Live</div>
+        <div class="platform-badge">전문 에이전시</div>
         <p class="platform-desc">틱톡 라이브를 통해 전 세계 팬들과 실시간으로 소통하고 수익을 창출합니다. 전문적인 틱톡 라이브 운영 노하우를 제공합니다.</p>
       </div>
       <div class="platform-card reveal" style="transition-delay:0.1s">
@@ -1314,6 +1370,7 @@ body{background:#fff;color:#1a1424}
           <img src="data:image/png;base64,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" alt="Bigo Live">
         </div>
         <div class="platform-name">Bigo Live</div>
+        <div class="platform-badge">공식 에이전시</div>
         <p class="platform-desc">비고라이브를 통해 안정적인 수익 구조를 만들어 드립니다. 비고라이브 전문 매니지먼트로 빠른 성장을 지원합니다.</p>
       </div>
     </div>
@@ -1677,6 +1734,7 @@ body{background:#fff;color:#1a1424}
       </div>
       <button type="submit" class="form-submit">지원서 보내기</button>
     </form>
+    <div class="form-closing reveal"><em>Your first live starts here.</em><p>누구나 처음은 낯설어요.<br>IVE와 함께라면 첫 방송부터 혼자가 아닙니다.</p></div>
   </div>
 </section>
 
@@ -1733,6 +1791,21 @@ body{background:#fff;color:#1a1424}
       </div>
       <button type="submit" class="form-submit">제휴 문의 보내기</button>
     </form>
+    <div class="form-closing reveal"><em>Let's grow together.</em><p>좋은 제안은 끝까지 함께합니다.<br>IVE가 든든한 파트너가 되겠습니다.</p></div>
+  </div>
+</section>
+
+<!-- CONTACTCARDS -->
+<section class="ccards" aria-label="문의 종류">
+  <div class="ccards-inner">
+    <div class="ccard cr">
+      <div class="ccard-top"><span class="ccard-for">For Creators</span><strong>크리에이터 지원</strong><span class="ccard-sub">비고라이브 · 틱톡 라이브 방송을 시작하고 싶은 분</span></div>
+      <div class="ccard-bottom"><img src="assets/qr-kakao.png" alt="카카오톡 오픈채팅 QR코드" width="96" height="96"><div><span>휴대폰 카메라로 찍으면<br>카카오톡 상담으로 연결돼요</span><a href="#apply">지원서 쓰기 →</a></div></div>
+    </div>
+    <div class="ccard bz">
+      <div class="ccard-top"><span class="ccard-for">For Business</span><strong>제휴 · 협업 문의</strong><span class="ccard-sub">브랜드 협찬 · 광고 · 에이전시 제휴</span></div>
+      <div class="ccard-bottom"><img src="assets/qr-business.png" alt="제휴 문의 페이지 QR코드" width="96" height="96"><div><span>휴대폰 카메라로 찍으면<br>제휴 문의 페이지가 열려요</span><a href="#business">제휴 문의하기 →</a></div></div>
+    </div>
   </div>
 </section>
 
@@ -1805,7 +1878,10 @@ body{background:#fff;color:#1a1424}
 </svg>
     <span class="footer-logo-text">IVE Entertainment</span>
   </a>
-  <p class="footer-copy">© 2026 아이브 엔터테인먼트. All rights reserved.</p>
+  <div class="footer-info">
+    <p class="footer-contact"><span>BIGO LIVE 공식 에이전시</span><span>E-mail : ive-ent@naver.com</span><span>Tel : 050-6661-0164</span><span>카카오톡 오픈채팅 : <a href="https://open.kakao.com/o/szo3y1jf" target="_blank" rel="noopener">바로가기</a></span></p>
+    <p class="footer-copy">© 2026 아이브 엔터테인먼트. All rights reserved.</p>
+  </div>
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
     <li><a href="#creators">Creators</a></li>
