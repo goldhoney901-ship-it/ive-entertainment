@@ -609,6 +609,15 @@ section { padding: 120px 80px; }
   font-size: 11px; color: var(--text-dim); line-height: 1.6; cursor: pointer;
 }
 
+/* BUSINESS */
+.biz { border-top: 1px solid var(--border); }
+.biz-types { display: flex; flex-wrap: wrap; gap: 8px; }
+.biz-types label { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--border); font-size: 13px; color: var(--white); cursor: pointer; transition: all .2s; }
+.biz-types input { accent-color: var(--neon-pink); }
+.biz-types label:has(input:checked) { border-color: var(--neon-pink); background: rgba(255,45,120,0.05); }
+.biz textarea.form-input { min-height: 140px; resize: vertical; line-height: 1.6; }
+.biz-note { font-size: 12px; color: var(--text-dim); margin-top: 12px; line-height: 1.7; }
+
 /* CONTACT */
 .contact { background: var(--black); }
 .contact-inner {
@@ -949,6 +958,7 @@ body{background:#fff;color:#1a1424}
     <li><a href="#process">Process</a></li>
     <li><a href="#platforms">Platforms</a></li>
     <li><a href="#creators">Creators</a></li>
+    <li><a href="#business">Business</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#apply" class="nav-cta">지원하기</a></li>
   </ul>
@@ -1536,6 +1546,62 @@ body{background:#fff;color:#1a1424}
   </div>
 </section>
 
+<!-- BUSINESS -->
+<section class="apply biz" id="business">
+  <div class="apply-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Business</div>
+      <h2 class="section-title">제휴·협업 <em>문의</em></h2>
+      <p class="biz-note">브랜드 협찬, 광고, 에이전시 제휴, 공동 이벤트 등 IVE와 함께할 제안을 남겨 주세요.<br>담당자가 확인 후 이메일 또는 연락처로 회신드립니다.</p>
+    </div>
+    <form class="apply-form reveal" id="bizForm" onsubmit="handleBiz(event)">
+      <div class="form-group">
+        <span class="form-label">문의 유형 (복수 선택)</span>
+        <div class="biz-types">
+          <label><input type="checkbox" name="type" value="비즈니스 협업">비즈니스 협업</label>
+          <label><input type="checkbox" name="type" value="브랜드 협찬">브랜드 협찬</label>
+          <label><input type="checkbox" name="type" value="광고">광고</label>
+          <label><input type="checkbox" name="type" value="에이전시 제휴">에이전시 제휴</label>
+          <label><input type="checkbox" name="type" value="기타">기타</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="b_company">회사명 (Company)</label>
+          <input type="text" id="b_company" name="company" required maxlength="60" class="form-input" placeholder="회사 또는 브랜드명">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="b_person">담당자 성함 · 직함</label>
+          <input type="text" id="b_person" name="person" required maxlength="40" class="form-input" placeholder="홍길동 / 마케팅 팀장">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="b_phone">연락처 (Phone)</label>
+          <input type="tel" id="b_phone" name="phone" required maxlength="20" class="form-input" placeholder="010-0000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="b_email">이메일 (Email)</label>
+          <input type="email" id="b_email" name="email" required maxlength="80" class="form-input" placeholder="name@company.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="b_msg">협업 제안 내용</label>
+        <textarea id="b_msg" name="message" required maxlength="2000" class="form-input" placeholder="제안 내용, 일정, 희망 크리에이터 등을 자유롭게 적어 주세요"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="b_link">회사 소개서 링크 (선택)</label>
+        <input type="url" id="b_link" name="link" maxlength="300" class="form-input" placeholder="구글 드라이브·노션 등 소개서 링크">
+      </div>
+      <div class="form-privacy">
+        <input type="checkbox" id="bizPrivacy" required>
+        <label for="bizPrivacy">(필수) 개인정보 수집 및 이용에 동의합니다. 입력하신 정보는 제휴 문의 회신 목적으로만 사용하며, 이메일 전송 서비스 Web3Forms를 거쳐 회사 이메일로 전달됩니다. <a href="privacy.html" target="_blank" style="color:var(--neon-pink)">개인정보처리방침 보기</a></label>
+      </div>
+      <button type="submit" class="form-submit">제휴 문의 보내기</button>
+    </form>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
@@ -1610,6 +1676,7 @@ body{background:#fff;color:#1a1424}
     <li><a href="#about">About</a></li>
     <li><a href="#creators">Creators</a></li>
     <li><a href="#apply">지원하기</a></li>
+    <li><a href="#business">제휴 문의</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="privacy.html">개인정보처리방침</a></li>
   </ul>
@@ -1671,6 +1738,27 @@ function handleSubmit(e) {
     btn.disabled = false;
     setTimeout(() => { btn.textContent = '지원서 보내기'; btn.style.background = ''; btn.style.color = ''; }, 3000);
   });
+}
+</script>
+
+<script>
+function handleBiz(e){
+  e.preventDefault();
+  const f=e.target, btn=f.querySelector('.form-submit'), v=n=>(f.querySelector('[name="'+n+'"]').value||'').trim();
+  const types=[...f.querySelectorAll('input[name="type"]:checked')].map(x=>x.value);
+  if(!types.length){alert('문의 유형을 하나 이상 선택해 주세요.');return;}
+  btn.disabled=true; btn.textContent='보내는 중...';
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({access_key:'db547074-9886-4122-b63f-43c66c5acb2d',
+      subject:'[IVE 홈페이지] 제휴 문의 - '+v('company')+' ('+types.join(', ')+')',
+      from_name:'IVE 홈페이지 제휴 문의', replyto:v('email'), botcheck:'',
+      '문의 유형':types.join(', '),'회사명':v('company'),'담당자':v('person'),'연락처':v('phone'),'이메일':v('email'),
+      '제안 내용':v('message'),'회사 소개서 링크':v('link')||'(없음)','개인정보 동의':f.querySelector('#bizPrivacy').checked?'동의':'미동의'})
+  }).then(r=>r.json()).then(d=>{
+    if(!(d&&(d.success===true||d.success==='true')))throw new Error(d&&d.message);
+    btn.textContent='접수 완료 ✓'; alert('제휴 문의가 접수되었습니다. 담당자가 확인 후 회신드리겠습니다.'); f.reset();
+  }).catch(()=>{btn.textContent='제휴 문의 보내기';alert('전송에 실패했습니다. 이메일(ive-ent@naver.com)로 보내 주세요.');})
+  .finally(()=>{btn.disabled=false;setTimeout(()=>{btn.textContent='제휴 문의 보내기';},3000);});
 }
 </script>
 
