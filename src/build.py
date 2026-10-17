@@ -21,7 +21,7 @@ tail = M[pos[-1]:]
 NAV_LINKS = '''<button class="nav-burger" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links">
     <li><a href="company.html"{a_company}>Company</a></li>
-    <li><a href="/#creators">Creators</a></li>
+    <li><a href="creators.html"{a_creators}>Creators</a></li>
     <li class="has-sub"><a href="apply.html"{a_apply}>Apply</a>
       <ul class="sub"><li><a href="apply.html">Creator · 크리에이터 지원</a></li><li><a href="business.html">Business · 제휴 문의</a></li></ul>
     </li>
@@ -32,12 +32,12 @@ NAV_LINKS = '''<button class="nav-burger" type="button" aria-label="메뉴 열�
 
 def nav(active):
     n = seg['NAV']
-    n = re.sub(r'<ul class="nav-links">.*?</ul>', lambda _: NAV_LINKS.format(**{k: (' aria-current="page"' if k == 'a_'+active else '') for k in ['a_company','a_apply','a_news','a_contact']}), n, count=1, flags=re.S)
+    n = re.sub(r'<ul class="nav-links">.*?</ul>', lambda _: NAV_LINKS.format(**{k: (' aria-current="page"' if k == 'a_'+active else '') for k in ['a_company','a_creators','a_apply','a_news','a_contact']}), n, count=1, flags=re.S)
     return n.replace('<a href="#" class="nav-logo">', '<a href="/" class="nav-logo">')
 
 def links(t):
     for k, v in {'#apply':'apply.html','#business':'business.html','#contact':'contact.html','#about':'company.html#about',
-                 '#process':'company.html#process','#support':'company.html#support','#platforms':'company.html#platforms','#creators':'/#creators'}.items():
+                 '#process':'company.html#process','#support':'company.html#support','#platforms':'company.html#platforms','#creators':'creators.html'}.items():
         t = t.replace('href="%s"' % k, 'href="%s"' % v)
     return t.replace('<a href="#" class="footer-logo">', '<a href="/" class="footer-logo">')
 
@@ -65,11 +65,15 @@ def meta(h, title, desc, path):
 BRAND = '아이브 엔터테인먼트 IVE Entertainment'
 PAGES = {
  'index.html': dict(active='', path='', title=None, desc=None, head=None,
-    body=['HERO','STATS','CREATORS','ROUTE']),
+    body=['HERO','STATS','ROUTE']),
  'company.html': dict(active='company', path='company.html', title='회사 소개 | '+BRAND,
     desc='아이브 엔터테인먼트 회사 소개 — 비고라이브·틱톡 라이브 전문 에이전시의 매니지먼트 과정과 크리에이터 지원 내용, 활동 플랫폼을 안내합니다.',
     head=('Company','회사 소개','2019년부터 비고라이브·틱톡 라이브 크리에이터와 함께해 온 IVE를 소개합니다.'),
     body=['ABOUT','PROCESS','PLATFORMS']),
+ 'creators.html': dict(active='creators', path='creators.html', title='크리에이터 | '+BRAND,
+    desc='아이브 엔터테인먼트와 함께 활동 중인 비고라이브·틱톡 라이브 크리에이터를 소개합니다. 현재 222명 이상의 크리에이터가 IVE와 함께하고 있습니다.',
+    head=('Creators','크리에이터','지금 IVE와 함께 방송하고 있는 크리에이터들'),
+    body=['CREATORS','ROUTE']),
  'apply.html': dict(active='apply', path='apply.html', title='크리에이터 지원하기 | '+BRAND,
     desc='아이브 엔터테인먼트 크리에이터 지원서 — 비고라이브·틱톡 라이브 방송을 시작하고 싶은 분은 지원서를 남겨 주세요. 방송 경험이 없어도 지원할 수 있습니다.',
     head=('Creator','크리에이터 지원','지원서를 남겨 주시면 담당자가 확인 후 연락드립니다.'),
