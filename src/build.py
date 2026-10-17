@@ -73,7 +73,7 @@ PAGES = {
  'creators.html': dict(active='creators', path='creators.html', title='크리에이터 | '+BRAND,
     desc='아이브 엔터테인먼트와 함께 활동 중인 비고라이브·틱톡 라이브 크리에이터를 소개합니다. 현재 222명 이상의 크리에이터가 IVE와 함께하고 있습니다.',
     head=('Creators','크리에이터','지금 IVE와 함께 방송하고 있는 크리에이터들'),
-    body=['CREATORS','ROUTE']),
+    body=['CREATORS']),
  'apply.html': dict(active='apply', path='apply.html', title='크리에이터 지원하기 | '+BRAND,
     desc='아이브 엔터테인먼트 크리에이터 지원서 — 비고라이브·틱톡 라이브 방송을 시작하고 싶은 분은 지원서를 남겨 주세요. 방송 경험이 없어도 지원할 수 있습니다.',
     head=('Creator','크리에이터 지원','지원서를 남겨 주시면 담당자가 확인 후 연락드립니다.'),
