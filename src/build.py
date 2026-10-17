@@ -68,7 +68,7 @@ PAGES = {
     body=['HERO']),
  'company.html': dict(active='company', path='company.html', title='회사 소개 | '+BRAND,
     desc='아이브 엔터테인먼트 회사 소개 — 비고라이브·틱톡 라이브 전문 에이전시의 매니지먼트 과정과 크리에이터 지원 내용, 활동 플랫폼을 안내합니다.',
-    head=('Company','회사 소개','2019년부터 비고라이브·틱톡 라이브 크리에이터와 함께해 온 IVE를 소개합니다.'),
+    head=('Company','회사 소개','2014년 설립, 라이브 방송 크리에이터와 함께 성장해 온 IVE를 소개합니다.'),
     body=['INTRO','ABOUT','PROCESS','PLATFORMS']),
  'creators.html': dict(active='creators', path='creators.html', title='크리에이터 | '+BRAND,
     desc='아이브 엔터테인먼트와 함께 활동 중인 비고라이브·틱톡 라이브 크리에이터를 소개합니다. 현재 222명 이상의 크리에이터가 IVE와 함께하고 있습니다.',
