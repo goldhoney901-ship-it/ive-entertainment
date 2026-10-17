@@ -1429,6 +1429,7 @@ n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click
     chips.style.display='none'; input.value=''; add(text,'user');
     history.push({role:'user',content:text}); send.disabled=true;
     var wait=add('답변을 준비하고 있어요…','bot');
+    var slow=setTimeout(function(){if(wait.textContent.indexOf('준비')>=0)wait.textContent='계약 관련 질문은 법무 검토까지 거치느라 20~30초 정도 걸려요. 잠시만 기다려 주세요…';},6000);
     if(WORKER_URL.indexOf('workers.dev')<0 && WORKER_URL.indexOf('http')!==0){
       wait.innerHTML=linkify("아직 AI가 연결되지 않았습니다. 카카오톡 오픈채팅으로 문의해 주세요: "+KAKAO);send.disabled=false;return;}
     fetch(WORKER_URL.replace(/\/$/,'')+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-10)})})
@@ -1437,7 +1438,7 @@ n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click
         if(!x.ok) reply+="\n급하신 문의는 카카오톡 오픈채팅으로 연락 주세요: "+KAKAO;
         wait.innerHTML=linkify(reply); if(x.ok) history.push({role:'assistant',content:reply});})
       .catch(function(){wait.innerHTML=linkify("연결에 문제가 있어요. 카카오톡 오픈채팅으로 문의해 주세요: "+KAKAO);})
-      .finally(function(){send.disabled=false;log.scrollTop=log.scrollHeight;input.focus();});
+      .finally(function(){clearTimeout(slow);send.disabled=false;log.scrollTop=log.scrollHeight;input.focus();});
   }
 })();
 </script>
