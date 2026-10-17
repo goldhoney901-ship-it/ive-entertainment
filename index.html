@@ -20,7 +20,7 @@
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="manifest" href="/site.webmanifest">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"아이브 엔터테인먼트","alternateName":["IVE Entertainment","아이브엔터테인먼트","IVE 엔터테인먼트"],"url":"https://ive-entertainment.com/","logo":"https://ive-entertainment.com/assets/IVE_icon_512.png","email":"ive-ent@naver.com","telephone":"050-6661-0164","foundingDate":"2014","sameAs":["https://open.kakao.com/o/szo3y1jf"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"아이브 엔터테인먼트","alternateName":["IVE Entertainment","아이브엔터테인먼트","IVE 엔터테인먼트"],"url":"https://ive-entertainment.com/","logo":"https://ive-entertainment.com/assets/IVE_icon_512.png","email":"ive-ent@naver.com","telephone":"050-6661-0164","foundingDate":"2014","sameAs":["https://open.kakao.com/o/szo3y1jf","https://www.instagram.com/ivemcn/"]}</script>
 <link rel="canonical" href="https://ive-entertainment.com/">
 <meta name="naver-site-verification" content="ad7aa5c0f09ca08d5b9f1a5ef72c56bb7e3d7856" />
 
@@ -454,6 +454,7 @@ section { padding: 120px 80px; }
   display: flex; align-items: center; justify-content: center;
 }
 .platform-img img { max-height: 80px; max-width: 160px; object-fit: contain; }
+.platform-img img[alt="Bigo Live"] { transform: scale(1.5); }
 .platform-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 28px; font-weight: 400;
@@ -683,6 +684,9 @@ nav.open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 .ccard-bottom a { display: inline-block; margin-top: 8px; color: #fff; font-weight: 700; text-decoration: none; }
 .cv-qr { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 18px 0 16px; font-size: 13px; line-height: 1.6; color: #2b2438; text-align: left; }
 .contact-visual .cv-qr img { display: block !important; width: 120px !important; height: 120px !important; border-radius: 10px; border: 1px solid rgba(26,20,36,0.1); padding: 4px; background: #fff; }
+.page-head + .biz .biz-note { display: none; }
+.page-head + .biz { padding-top: 70px; }
+@media (max-width: 420px) { .nav-logo-text { display: none !important; } }
 /* FOOTER INFO */
 .footer-info { display: grid; gap: 6px; }
 .footer-contact { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 11px; color: var(--text-mid); }
