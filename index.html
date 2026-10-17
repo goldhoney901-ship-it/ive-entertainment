@@ -609,6 +609,40 @@ section { padding: 120px 80px; }
   font-size: 11px; color: var(--text-dim); line-height: 1.6; cursor: pointer;
 }
 
+/* SUPPORT */
+.support { background: #ffffff; }
+.support-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+.support-head { position: sticky; top: 110px; }
+.support-head p { margin-top: 22px; font-size: 14px; line-height: 1.9; color: var(--text-mid); }
+.support-list { list-style: none; border-top: 1px solid rgba(26,20,36,0.12); }
+.support-item { display: grid; grid-template-columns: 96px 1fr; gap: 24px; padding: 30px 0; border-bottom: 1px solid rgba(26,20,36,0.08); }
+.support-no { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; line-height: .9; color: var(--neon-pink); }
+.support-en { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-dim); }
+.support-ko { font-size: 20px; font-weight: 500; color: #1a1424; margin: 6px 0 12px; }
+.support-item ul { list-style: none; display: grid; gap: 6px; }
+.support-item li { font-size: 14px; line-height: 1.75; color: var(--text-mid); padding-left: 14px; position: relative; }
+.support-item li::before { content: ''; position: absolute; left: 0; top: .78em; width: 5px; height: 5px; border-radius: 50%; background: var(--neon-pink); }
+/* ROUTE CARDS */
+.route { background: var(--dark); padding-top: 80px; padding-bottom: 0; }
+.route-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.route-card { display: grid; gap: 10px; padding: 34px 30px; border-radius: 18px; text-decoration: none; color: #1a1424; transition: transform .25s, box-shadow .25s; }
+.route-card:hover, .route-card:focus-visible { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(26,20,36,0.12); outline: none; }
+.route-card.cr { background: #ff2d78; color: #fff; }
+.route-card.bz { background: #7ff0e4; }
+.route-for { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: .85; }
+.route-title { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; }
+.route-desc { font-size: 14px; line-height: 1.7; opacity: .9; }
+.route-go { font-size: 13px; font-weight: 700; margin-top: 6px; }
+@media (max-width: 900px) {
+  .support-inner { grid-template-columns: 1fr; gap: 28px; }
+  .support-head { position: static; }
+  .support-item { grid-template-columns: 64px 1fr; gap: 16px; padding: 24px 0; }
+  .support-no { font-size: 42px; }
+  .support-ko { font-size: 18px; }
+  .route { padding-top: 56px; }
+  .route-inner { grid-template-columns: 1fr; }
+}
+
 /* BUSINESS */
 .biz { border-top: 1px solid var(--border); }
 .biz-types { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -956,6 +990,7 @@ body{background:#fff;color:#1a1424}
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#support">Support</a></li>
     <li><a href="#platforms">Platforms</a></li>
     <li><a href="#creators">Creators</a></li>
     <li><a href="#business">Business</a></li>
@@ -1182,6 +1217,39 @@ body{background:#fff;color:#1a1424}
 </section>
 
 <!-- PLATFORMS -->
+<!-- SUPPORT -->
+<section class="support" id="support">
+  <div class="support-inner">
+    <div class="support-head reveal">
+      <div class="section-eyebrow">Support</div>
+      <h2 class="section-title" style="color:#1a1424">IVE가 <em>함께하는 것</em></h2>
+      <p>IVE 크리에이터가 실제로 받는 지원이에요.<br>처음 시작하는 분도 혼자 하지 않도록 옆에서 챙깁니다.</p>
+    </div>
+    <ol class="support-list reveal">
+        <li class="support-item">
+          <div class="support-no">01</div>
+          <div><div class="support-en">Training & Feedback</div><div class="support-ko">첫 방송 교육 · 1:1 피드백</div><ul><li>처음 라이브를 시작하는 분도 방송 켜는 법부터 차근차근 알려 드려요</li><li>방송을 모니터링하고 담당 매니저가 1:1로 피드백해요</li></ul></div>
+        </li>
+        <li class="support-item">
+          <div class="support-no">02</div>
+          <div><div class="support-en">PK & Events</div><div class="support-ko">PK 매칭 · 이벤트 기획</div><ul><li>위클리 PK 상대를 연결하고 일정·진행 방법을 안내해요</li><li>방송을 키울 수 있는 이벤트를 함께 기획해요</li></ul></div>
+        </li>
+        <li class="support-item">
+          <div class="support-no">03</div>
+          <div><div class="support-en">Streaming Tools</div><div class="support-ko">방송 도구 제공</div><ul><li>IVE가 직접 만든 채팅 읽어주기(TTS) 도구를 제공해요</li><li>방송에 필요한 설정과 사용법을 안내해요</li></ul></div>
+        </li>
+        <li class="support-item">
+          <div class="support-no">04</div>
+          <div><div class="support-en">Promotion</div><div class="support-ko">포스터 · SNS 홍보</div><ul><li>PK·이벤트 포스터를 제작해 드려요</li><li>IVE 공식 인스타그램으로 크리에이터를 알려요</li></ul></div>
+        </li>
+        <li class="support-item">
+          <div class="support-no">05</div>
+          <div><div class="support-en">Flexibility</div><div class="support-ko">자유로운 방송 시간</div><ul><li>원하는 시간, 원하는 곳에서 방송할 수 있어요</li><li>나만의 속도로 성장하도록 맞춰서 지원해요</li></ul></div>
+        </li>
+    </ol>
+  </div>
+</section>
+
 <section class="platforms" id="platforms">
   <div class="platforms-inner">
     <div class="reveal">
@@ -1495,6 +1563,14 @@ body{background:#fff;color:#1a1424}
   </div>
 </section>
 
+<!-- ROUTE -->
+<section class="route" aria-label="문의 종류 선택">
+  <div class="route-inner">
+    <a class="route-card cr" href="#apply"><span class="route-for">For Creators</span><span class="route-title">크리에이터 지원</span><span class="route-desc">비고라이브 · 틱톡 라이브에서 방송을 시작하고 싶은 분</span><span class="route-go">지원서 쓰기 →</span></a>
+    <a class="route-card bz" href="#business"><span class="route-for">For Business</span><span class="route-title">제휴 · 협업 문의</span><span class="route-desc">브랜드 협찬, 광고, 에이전시 제휴를 제안하실 분</span><span class="route-go">제휴 문의하기 →</span></a>
+  </div>
+</section>
+
 <!-- APPLY -->
 <section class="apply" id="apply">
   <div class="apply-inner">
@@ -1536,6 +1612,23 @@ body{background:#fff;color:#1a1424}
       <div class="form-group">
         <label class="form-label">방송 경험</label>
         <input type="text" name="experience" maxlength="300" class="form-input" placeholder="이전 방송 경험을 간단히 작성해 주세요">
+      </div>
+      <div class="form-group">
+        <label class="form-label">IVE를 알게 된 경로</label>
+        <select name="source" class="form-input">
+          <option value="">선택 안 함</option>
+          <option>인스타그램</option>
+          <option>틱톡</option>
+          <option>네이버 검색</option>
+          <option>구글 검색</option>
+          <option>지인 소개</option>
+          <option>비고라이브 방송</option>
+          <option>기타</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">미리 궁금한 점 (선택)</label>
+        <textarea name="question" maxlength="1000" class="form-input" style="min-height:110px;resize:vertical;line-height:1.6" placeholder="방송 시간, 장비, 진행 방식 등 궁금한 점을 적어 주시면 상담 때 먼저 안내드려요"></textarea>
       </div>
       <div class="form-privacy">
         <input type="checkbox" id="privacy" required>
@@ -1723,6 +1816,7 @@ function handleSubmit(e) {
       from_name: 'IVE 홈페이지 지원서', botcheck: '',
       '이름': v('name'), '연락처': v('phone'), '생년월일': v('birth'),
       '플랫폼': v('platform'), 'SNS URL': v('sns'), '방송 경험': v('experience'),
+      '알게 된 경로': v('source') || '(선택 안 함)', '미리 궁금한 점': v('question') || '(없음)',
       '개인정보 동의': f.querySelector('#privacy').checked ? '동의' : '미동의'
     })
   }).then(r => r.json()).then(d => {
