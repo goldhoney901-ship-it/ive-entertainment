@@ -25,13 +25,14 @@ NAV_LINKS = '''<button class="nav-burger" type="button" aria-label="메뉴 열�
     <li class="has-sub"><a href="apply.html"{a_apply}>Apply</a>
       <ul class="sub"><li><a href="apply.html">Creator · 크리에이터 지원</a></li><li><a href="business.html">Business · 제휴 문의</a></li></ul>
     </li>
+    <li><a href="news.html"{a_news}>News</a></li>
     <li><a href="contact.html"{a_contact}>Contact</a></li>
     <li><a href="apply.html" class="nav-cta">지원하기</a></li>
   </ul>'''
 
 def nav(active):
     n = seg['NAV']
-    n = re.sub(r'<ul class="nav-links">.*?</ul>', lambda _: NAV_LINKS.format(**{k: (' aria-current="page"' if k == 'a_'+active else '') for k in ['a_company','a_apply','a_contact']}), n, count=1, flags=re.S)
+    n = re.sub(r'<ul class="nav-links">.*?</ul>', lambda _: NAV_LINKS.format(**{k: (' aria-current="page"' if k == 'a_'+active else '') for k in ['a_company','a_apply','a_news','a_contact']}), n, count=1, flags=re.S)
     return n.replace('<a href="#" class="nav-logo">', '<a href="/" class="nav-logo">')
 
 def links(t):
@@ -64,7 +65,7 @@ def meta(h, title, desc, path):
 BRAND = '아이브 엔터테인먼트 IVE Entertainment'
 PAGES = {
  'index.html': dict(active='', path='', title=None, desc=None, head=None,
-    body=['HERO','STATS','VIDEO','CREATORS','ROUTE']),
+    body=['HERO','STATS','CREATORS','ROUTE']),
  'company.html': dict(active='company', path='company.html', title='회사 소개 | '+BRAND,
     desc='아이브 엔터테인먼트 회사 소개 — 비고라이브·틱톡 라이브 전문 에이전시의 매니지먼트 과정과 크리에이터 지원 내용, 활동 플랫폼을 안내합니다.',
     head=('Company','회사 소개','2019년부터 비고라이브·틱톡 라이브 크리에이터와 함께해 온 IVE를 소개합니다.'),
@@ -77,6 +78,10 @@ PAGES = {
     desc='아이브 엔터테인먼트 제휴·협업 문의 — 브랜드 협찬, 광고, 에이전시 제휴, 공동 이벤트 제안을 받습니다.',
     head=('Business','제휴 · 협업 문의','브랜드 협찬, 광고, 에이전시 제휴 제안을 기다립니다.'),
     body=['BUSINESS']),
+ 'news.html': dict(active='news', path='news.html', title='소식 | '+BRAND,
+    desc='아이브 엔터테인먼트 소식 — 강남역 미디어월, 압구정 신웅빌딩 광고 등 IVE 크리에이터가 함께한 비고라이브 광고 영상과 새로운 소식을 전합니다.',
+    head=('News','소식','IVE 크리에이터와 함께한 광고 영상과 새로운 소식'),
+    body=['VIDEO']),
  'contact.html': dict(active='contact', path='contact.html', title='문의하기 | '+BRAND,
     desc='아이브 엔터테인먼트 연락처 — 전화, 이메일, 카카오톡 오픈채팅, 인스타그램으로 문의하실 수 있습니다.',
     head=('Contact','문의하기','편한 방법으로 연락 주세요.'),
