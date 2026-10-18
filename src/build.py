@@ -106,7 +106,7 @@ for fn, p in PAGES.items():
     if fn == 'index.html':
         out = out.replace('</body>', '''<script>
 (function(){var h=document.querySelector('.hero'),f=document.querySelector('footer');if(!h||!f)return;
-function fit(){var i=h.querySelector('.hs1-inner'),need=i?i.offsetHeight+110:0;h.style.height=Math.max(520,window.innerHeight-f.offsetHeight,need)+'px';h.style.minHeight='0';}
+function fit(){var need=0;h.querySelectorAll('.hs').forEach(function(x){var c=x.firstElementChild;if(c)need=Math.max(need,c.offsetHeight+110);});h.style.height=Math.max(520,window.innerHeight-f.offsetHeight,need)+'px';h.style.minHeight='0';}
 fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);if(document.fonts)document.fonts.ready.then(fit);})();
 </script>
 </body>''', 1)
