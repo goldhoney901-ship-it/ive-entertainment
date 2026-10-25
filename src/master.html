@@ -1339,6 +1339,35 @@ body{background:#fff;color:#1a1424}
   </div>
 </section>
 
+<!-- NEWSCARDS -->
+<style>
+.ncards{background:#fff;padding:80px 40px}
+.ncards-in{max-width:1100px;margin:0 auto}
+.ncards h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,44px);font-weight:300;letter-spacing:2px;color:#1a1424;margin:0 0 32px}
+.ncards h2 em{color:#ff2d78;font-style:italic}
+.ncard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.ncard{display:block;text-decoration:none;color:#1a1424;border:1px solid #ece4ee;border-radius:12px;overflow:hidden;background:#fff;transition:transform .25s,box-shadow .25s}
+.ncard:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(255,45,120,.14)}
+.ncard img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+.ncard-b{padding:18px 18px 20px}
+.ncard-t{font-size:16px;font-weight:700;line-height:1.5;margin:0 0 18px;color:#1a1424}
+.ncard-m{display:flex;justify-content:space-between;font-size:13px;color:#4a4258}
+@media(max-width:900px){.ncard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ncards{padding:60px 18px}.ncard-grid{grid-template-columns:1fr}}
+</style>
+<section class="ncards">
+  <div class="ncards-in">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:#ff2d78;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:14px;"><span style="width:30px;height:1px;background:#ff2d78;display:block;"></span>IVE News</div>
+    <h2>IVE <em>소식</em></h2>
+    <div class="ncard-grid">
+      <a class="ncard" href="news-tiktok-vs-bigo.html">
+        <img src="assets/news/tiktok-vs-bigo.jpg" alt="틱톡 라이브 vs 비고 라이브 비교표" loading="lazy" decoding="async">
+        <div class="ncard-b"><p class="ncard-t">틱톡 라이브 vs 비고 라이브, 어디서 방송할까? 한눈에 비교</p><div class="ncard-m"><span>IVE ENTERTAINMENT</span><span>2026.10.25</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- COMPARE -->
 <style>
 .cmp{background:#fff;padding:70px 40px}
@@ -1358,6 +1387,7 @@ body{background:#fff;color:#1a1424}
 .cmp-tt{border:1px solid #ddd3e0} .cmp-bg{border:1px solid #f0b6cc;background:#fff5f9}
 .cmp-bg b{color:#b8124f;font-weight:800}
 .cmp-m{display:none}
+.page-head ~ .cmp .cmp-eb,.page-head ~ .cmp h2{display:none}
 .cmp-note{font-size:13px;color:#2b2438;margin:12px 0 0}
 .cmp-cta{display:inline-block;margin-top:16px;background:#ff2d78;color:#fff!important;padding:13px 26px;border-radius:999px;font-weight:700;text-decoration:none}
 @media(max-width:760px){.cmp{padding:64px 18px}.cmp-head{display:none}.cmp-row{grid-template-columns:1fr 1fr;background:#faf7fa;border-radius:14px;padding:10px;margin-bottom:12px}.cmp-k{grid-column:1/-1;background:none;padding:4px 6px}.cmp-v{font-size:14px;text-align:left;padding:10px 12px}.cmp-m{display:block;font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:4px}.cmp-tt .cmp-m{color:#1a1424}.cmp-bg .cmp-m{color:#c8195a}.cmp-tt{background:#fff}}
@@ -1380,7 +1410,7 @@ body{background:#fff;color:#1a1424}
 <div class="cmp-row"><div class="cmp-k">기타</div><div class="cmp-v cmp-tt"><span class="cmp-m">틱톡 라이브</span><span class="cmp-t">에이전시 없이 환전 가능<br>(선물 80만 개 이상 받으면 에이전시 등록 불가)</span></div><div class="cmp-v cmp-bg"><span class="cmp-m">비고 라이브</span><span class="cmp-t">에이전시가 있어야 환전 가능<br>(언제든 에이전시 등록 가능)</span></div></div>
 <div class="cmp-row"><div class="cmp-k">유저 충전</div><div class="cmp-v cmp-tt"><span class="cmp-m">틱톡 라이브</span><span class="cmp-t">100만원 충전 시 약 57,000코인</span></div><div class="cmp-v cmp-bg"><span class="cmp-m">비고 라이브</span><span class="cmp-t">100만원 충전 시 약 35,000~37,000개</span></div></div>
     <p class="cmp-note">※ 수치는 대략이며 플랫폼 정책에 따라 바뀔 수 있습니다. 지원금 조건은 상담 때 정확히 안내드려요.</p>
-    <a class="cmp-cta" href="apply.html">IVE 크리에이터 지원하기</a>
+    <a class="cmp-cta" href="apply.html">IVE 크리에이터 지원하기</a> <a class="cmp-cta" href="news.html" style="background:#fff;color:#1a1424!important;border:1px solid #ddd3e0;margin-left:6px">소식 목록으로</a>
   </div>
 </section>
 
