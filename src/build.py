@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 M = open(os.path.join(ROOT, 'src/master.html'), encoding='utf-8').read()
 SITE = 'https://ive-entertainment.com/'
 
-MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- STATS -->','<!-- VIDEO -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
+MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- STATS -->','<!-- VIDEO -->','<!-- COMPARE -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
          '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- GUIDE -->','<!-- GUIDETT -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
 pos = []
 for m in MARKS:
@@ -93,7 +93,7 @@ PAGES = {
  'news.html': dict(active='news', path='news.html', title='소식 | '+BRAND,
     desc='아이브 엔터테인먼트 소식 — 강남역 미디어월, 압구정 신웅빌딩 광고 등 IVE 크리에이터가 함께한 비고라이브 광고 영상과 새로운 소식을 전합니다.',
     head=('News','소식','IVE 크리에이터와 함께한 광고 영상과 새로운 소식'),
-    body=['VIDEO']),
+    body=['VIDEO','COMPARE']),
  'contact.html': dict(active='contact', path='contact.html', title='문의하기 | '+BRAND,
     desc='아이브 엔터테인먼트 연락처 — 전화, 이메일, 카카오톡 오픈채팅, 인스타그램으로 문의하실 수 있습니다.',
     head=('Contact','문의하기','편한 방법으로 연락 주세요.'),
