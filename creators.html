@@ -1526,6 +1526,7 @@ function handleSubmit(e) {
   const m = v('birth').match(/^(\d{4})[-.\/]?(\d{1,2})[-.\/]?(\d{1,2})$/);
   if (!m) { alert('생년월일을 YYYY-MM-DD 형식으로 입력해 주세요.'); return; }
   const b = new Date(+m[1], +m[2] - 1, +m[3]), now = new Date();
+  if (b.getFullYear() !== +m[1] || b.getMonth() !== +m[2] - 1 || b.getDate() !== +m[3] || +m[1] < 1930) { alert('생년월일을 정확히 입력해 주세요. 예) 1995-03-15'); return; }
   let age = now.getFullYear() - b.getFullYear();
   if (now < new Date(now.getFullYear(), b.getMonth(), b.getDate())) age--;
   if (isNaN(age) || age < 19) { alert('만 19세 이상만 지원 가능합니다.'); return; }
