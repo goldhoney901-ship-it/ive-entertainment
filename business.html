@@ -1311,7 +1311,8 @@ function handleSubmit(e) {
       access_key: 'db547074-9886-4122-b63f-43c66c5acb2d',
       subject: '[IVE 홈페이지] 크리에이터 지원서 - ' + v('name'),
       from_name: 'IVE 홈페이지 지원서', botcheck: '',
-      '이름': v('name'), '연락처': v('phone'), '생년월일': v('birth'),
+      ...(v('email') ? { replyto: v('email') } : {}),
+      '이름': v('name'), '연락처': v('phone'), '이메일': v('email') || '(미입력)', '생년월일': v('birth'),
       '관심 플랫폼': [...f.querySelectorAll('input[name="platforms"]:checked')].map(x=>x.value).join(', '), 'SNS URL': v('sns'), '방송 경험': v('experience'),
       '알게 된 경로': v('source') || '(선택 안 함)', '미리 궁금한 점': v('question') || '(없음)',
       '개인정보 동의': f.querySelector('#privacy').checked ? '동의' : '미동의'
