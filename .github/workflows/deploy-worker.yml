@@ -62,7 +62,7 @@ jobs:
           echo "::notice::TEST=$(echo "$R" | tr '\n' ' ' | cut -c1-600)"
           L=$(curl -s -m 90 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"지금 틱톡 에이전시랑 계약돼 있는데 비고라이브는 다른 에이전시랑 계약해도 되나요? 이중계약 아닌가요?"}]}' -w ' HTTP%{http_code}' || echo ' TIMEOUT')
           echo "::notice::LEGAL_TEST=$(echo "$L" | tr '\n' ' ' | cut -c1-1500)"
-          N=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"비고 라이브 해볼 생각인데 직장 병행이에요. 1. 지켜야할 조항 2. 한달 채워야 하는 방송시간 3. 해주는 지원 4. 콩 환전 5. 기존 콩 출금 6. 소속사는 뭘 가져가는지. 그리고 1년 못 채우면 어떻게 되나요?"}]}' -w ' HTTP%{http_code}' || echo ' TIMEOUT')
+          N=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"비고 라이브 해볼 생각인데 직장 병행이에요. 1. 지켜야할 조항 2. 한달 채워야 하는 방송시간 3. 해주는 지원 4. 콩 환전 5. 기존 콩 출금 6. 소속사는 뭘 가져가는지. 그리고 비고에서 받은 돈은 달러로 들어오나요 원화로 들어오나요? 출금 신청하면 며칠 걸려요?"}]}' -w ' HTTP%{http_code}' || echo ' TIMEOUT')
           echo "::notice::NEWBIE_TEST=$(echo "$N" | tr '\n' ' ' | cut -c1-2500)"
           F=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://evil.example" -d '{}')
           echo "::notice::OTHER_ORIGIN_STATUS=$F"
