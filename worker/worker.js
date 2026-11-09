@@ -119,7 +119,7 @@ const REVIEW_PROMPT = `너는 IVE Entertainment 법무팀 검토자다. 상담 �
 6. 존댓말, 9문장 이내, **·# 같은 마크다운 금지.
 ` + "\n" + LEGAL_KB;
 
-async function callGemini(env, system, contents, temperature, timeoutMs = 15000) {
+async function callGemini(env, system, contents, temperature, timeoutMs = 25000) {
   let r;
   for (const model of MODELS) {
     try {
@@ -127,7 +127,7 @@ async function callGemini(env, system, contents, temperature, timeoutMs = 15000)
         signal: AbortSignal.timeout(timeoutMs),
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
-        body: JSON.stringify({ systemInstruction: { parts: [{ text: system }] }, contents, generationConfig: { temperature, maxOutputTokens: 2048 } }),
+        body: JSON.stringify({ systemInstruction: { parts: [{ text: system }] }, contents, generationConfig: { temperature, maxOutputTokens: 8192 } }),
       });
     } catch (e) { r = { ok: false, status: 504 }; continue; }
     if (r.ok || ![404, 429, 500, 503].includes(r.status)) break;
