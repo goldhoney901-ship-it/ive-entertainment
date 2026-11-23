@@ -153,12 +153,23 @@ async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
 }
 
 // 대표가 쓰지 않기로 한 표현("IVE는 수수료를 떼지/받지 않는다")이 나오면 그 문장만 지운다
+const FEE_OK = "비고라이브는 받은 콩을 본사가 세금 포함 100% 본인 지갑에 직접 넣어 주고, 환전할 때 은행 수수료 정도만 들어요.";
+const FACE_OK = "얼굴 공개 여부는 방송 스타일에 맞춰 담당자가 상담해 드려요.";
+const NUDE_OK = "노출 방송은 비고라이브 규정상 금지예요.";
+function fixSentences(text, re, good) {
+  let used = text.includes(good);
+  return text.replace(re, (m) => { const lead = /^\s/.test(m) ? " " : ""; if (used) return lead; used = true; return lead + good + " "; });
+}
+// 대표가 정한 표현과 다르게 말하는 문장은 정해 둔 문장으로 바꾼다(예비 AI 실수 방지)
 function scrub(r) {
-  if (r && r.ok && r.text) r.text = r.text
-    .replace(/[^.!?\n]*(IVE|아이브|소속사|회사)[^.!?\n]*(콩|수익)[^.!?\n]*(가져가지|떼지|차감하지)[^.!?\n]*[.!?]?[ \t]*/g, "")
-    .replace(/[^.!?\n]*구조라[^.!?\n]*수수료(가|는)? ?없[^.!?\n]*[.!?]?[ \t]*/g, "")
-    .replace(/법무팀입니다/g, "AI 상담 도우미입니다")
-    .replace(/[^.!?\n]*(IVE|아이브|소속사|저희|회사)[^.!?\n]*수수료[^.!?\n]*(받지|떼지|가져가지|차감하지|차감 ?없|청구하지|공제하지|없)[^.!?\n]*[.!?]?[ \t]*/g, "").replace(/\n{3,}/g, "\n\n").trim();
+  if (!r || !r.ok || !r.text) return r;
+  let t = r.text;
+  t = fixSentences(t, /[^.!?\n]*(IVE|아이브|소속사|회사|저희)[^.!?\n]*(수수료|콩|수익)[^.!?\n]*(받지|떼지|가져가지|차감하지|차감 ?없|청구하지|공제하지)[^.!?\n]*[.!?]?[ \t]*/g, FEE_OK);
+  t = fixSentences(t, /[^.!?\n]*구조라[^.!?\n]*수수료(가|는)? ?없[^.!?\n]*[.!?]?[ \t]*/g, FEE_OK);
+  t = fixSentences(t, /[^.!?\n]*얼굴[^.!?\n]*(않아도|안 나와도|없이|안 보여도|공개하지 않)[^.!?\n]*(가능|돼|됩니다)[^.!?\n]*[.!?]?[ \t]*/g, FACE_OK);
+  t = fixSentences(t, /[^.!?\n]*노출 방송[^.!?\n]*(제한될 수|확인해|주의)[^.!?\n]*[.!?]?[ \t]*/g, NUDE_OK);
+  t = t.replace(/법무팀입니다/g, "AI 상담 도우미입니다").replace(/[ \t]{2,}/g, " ").replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  r.text = t;
   return r;
 }
 
