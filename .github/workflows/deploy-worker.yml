@@ -12,6 +12,7 @@ jobs:
     env:
       RAW_CF: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       RAW_GEM: ${{ secrets.GEMINI_API_KEY }}
+      RAW_GROQ: ${{ secrets.GROQ_API_KEY }}
     defaults:
       run:
         working-directory: worker
@@ -53,6 +54,14 @@ jobs:
         run: |
           set -o pipefail
           printf '%s' "$GEMINI_API_KEY" | npx -y wrangler@4 secret put GEMINI_API_KEY 2>&1 | tee secret.log || { tail -n 15 secret.log | sed 's/^/::error::/' ; exit 1; }
+      - name: Set Groq secret (backup AI)
+        run: |
+          set -o pipefail
+          GQ=$(printf '%s' "$RAW_GROQ" | head -n1 | tr -d '[:space:]')
+          if [ -z "$GQ" ]; then echo "::warning::GROQ_API_KEY not set - backup AI off"; exit 0; fi
+          echo "::add-mask::$GQ"
+          case "$GQ" in gsk_*) echo "::notice::GROQ_API_KEY looks like: groq";; *) echo "::warning::GROQ_API_KEY does not start with gsk_";; esac
+          printf '%s' "$GQ" | npx -y wrangler@4 secret put GROQ_API_KEY 2>&1 | tee groq.log || { tail -n 15 groq.log | sed 's/^/::error::/' ; exit 1; }
       - name: Smoke test
         run: |
 
@@ -64,5 +73,7 @@ jobs:
           echo "::notice::LEGAL_TEST=$(echo "$L" | tr '\n' ' ' | cut -c1-1500)"
           N=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"비고 라이브 해볼 생각인데 직장 병행이에요. 1. 지켜야할 조항 2. 한달 채워야 하는 방송시간 3. 해주는 지원 4. 콩 환전 5. 기존 콩 출금 6. 소속사는 뭘 가져가는지. 그리고 비고에서 받은 돈은 달러로 들어오나요 원화로 들어오나요? 출금 신청하면 며칠 걸려요?"}]}' -w ' HTTP%{http_code}' || echo ' TIMEOUT')
           echo "::notice::NEWBIE_TEST=$(echo "$N" | tr '\n' ' ' | cut -c1-2500)"
+          G=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "X-IVE-Provider: groq" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"콩은 어떻게 출금하나요?"}]}' -w ' HTTP%{http_code}' || echo ' TIMEOUT')
+          echo "::notice::GROQ_TEST=$(echo "$G" | tr '\n' ' ' | cut -c1-1200)"
           F=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://evil.example" -d '{}')
           echo "::notice::OTHER_ORIGIN_STATUS=$F"

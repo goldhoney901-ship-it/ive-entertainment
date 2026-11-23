@@ -119,7 +119,40 @@ const REVIEW_PROMPT = `너는 IVE Entertainment 법무팀 검토자다. 상담 �
 6. 존댓말, 9문장 이내, **·# 같은 마크다운 금지.
 ` + "\n" + LEGAL_KB;
 
+// 예비 AI(Groq, 무료). 키는 Cloudflare Secret "GROQ_API_KEY"에만 저장합니다.
+const GROQ_MODELS = ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "llama-3.1-8b-instant"];
+async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
+  if (!env.GROQ_API_KEY) return { ok: false, status: 503, detail: "no groq key" };
+  const messages = [{ role: "system", content: system }].concat(
+    contents.map(c => ({ role: c.role === "model" ? "assistant" : "user", content: (c.parts || []).map(p => p.text || "").join("") }))
+  );
+  let r;
+  for (const model of GROQ_MODELS) {
+    try {
+      r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        signal: AbortSignal.timeout(timeoutMs),
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + env.GROQ_API_KEY },
+        body: JSON.stringify({ model, messages, temperature, max_tokens: 4096 }),
+      });
+    } catch (e) { r = { ok: false, status: 504 }; continue; }
+    if (r.ok || ![404, 429, 500, 503].includes(r.status)) break;
+  }
+  if (!r.ok) return { ok: false, status: r.status, detail: r.statusText || "" };
+  const data = await r.json();
+  const text = (data.choices?.[0]?.message?.content || "").replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+  return text ? { ok: true, text, via: "groq" } : { ok: false, status: 502, detail: "empty" };
+}
+
 async function callGemini(env, system, contents, temperature, timeoutMs = 25000) {
+  if (env.FORCE_GROQ) return callGroq(env, system, contents, temperature, timeoutMs);
+  const g = await callGeminiOnly(env, system, contents, temperature, timeoutMs);
+  if (g.ok && g.text) return g;
+  const q = await callGroq(env, system, contents, temperature, timeoutMs);
+  return q.ok ? q : g;
+}
+
+async function callGeminiOnly(env, system, contents, temperature, timeoutMs = 25000) {
   let r;
   for (const model of MODELS) {
     try {
@@ -156,6 +189,7 @@ function json(body, status, origin) {
 
 export default {
   async fetch(request, env) {
+    if (request.headers.get("X-IVE-Provider") === "groq") env = { ...env, FORCE_GROQ: true }; // 예비 AI 점검용
     const origin = request.headers.get("Origin") || "";
     const allowed = ALLOWED_ORIGINS.includes(origin);
 
