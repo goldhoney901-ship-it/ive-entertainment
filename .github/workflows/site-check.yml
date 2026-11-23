@@ -17,6 +17,6 @@ jobs:
             code=$(curl -s -o page.html -w '%{http_code}' "https://ive-entertainment.com/$p?nocache=$RANDOM")
             title=$(grep -o '<title>[^<]*' page.html | head -1 | sed 's/<title>//')
             links=$(grep -o 'href="privacy[^"]*"' page.html | sort | uniq -c | tr '\n' ' ')
-            v05=$(grep -c '본인 방송 주소' page.html)
+            v05=$(grep -c '본인 방송 주소' page.html || true)
             echo "::notice::$p HTTP $code | $title | $links | 본인방송주소=$v05"
           done
