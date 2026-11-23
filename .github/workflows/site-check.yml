@@ -1,0 +1,21 @@
+name: Site check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/site-check.yml"]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check live pages
+        run: |
+          sleep 20
+          for p in privacy.html privacy-site.html apply.html business.html index.html; do
+            code=$(curl -s -o page.html -w '%{http_code}' "https://ive-entertainment.com/$p?nocache=$RANDOM")
+            title=$(grep -o '<title>[^<]*' page.html | head -1 | sed 's/<title>//')
+            links=$(grep -o 'href="privacy[^"]*"' page.html | sort | uniq -c | tr '\n' ' ')
+            echo "::notice::$p HTTP $code | $title | $links"
+          done
