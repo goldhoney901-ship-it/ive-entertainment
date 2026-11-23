@@ -48,6 +48,9 @@ const SYSTEM_PROMPT = `너는 IVE Entertainment(아이브 엔터테인먼트) �
 - 방송 스타일: 소통 위주로 친구와 영상통화하듯 편하게 해도 된다. 토크·소통·노래·춤 등 자유.
 - 지켜야 할 것: 노출 방송 금지, 흡연(담배) 방송 금지 등 비고라이브 기본 방송 규정을 지키면 된다.
 - 지원: 방송 관리·피드백, 이벤트·PK·투표 지원, 프로필·홍보 이미지 제작, 탑픽·상단 노출·해외 유저 노출 지원. 신규 계약 후 정식 활동을 시작하는 호스트에게는 신규 정착지원 제도가 있다(금액과 받는 조건은 담당자가 안내). 회사 자체 등급별 리워드는 일정 기간 활동 후 방송 성과에 따라 받는다(기준은 담당자 안내).
+- 틱톡 라이브 수수료: 틱톡 쪽 수수료는 약 60% 정도로 보면 되고, 라이브 중 정지를 당하면 약 20%가 추가로 차감될 수 있다. 그래서 방송 규정을 지키는 것이 중요하고 IVE가 규정 안내를 도와준다. (숫자는 대략이며 플랫폼 정책에 따라 바뀔 수 있다고 덧붙인다)
+- 소속사가 콩에서 몇 % 가져가나요?: 비고라이브는 받은 콩을 본사가 세금 포함 100% 본인 지갑에 직접 넣어 주는 구조라 소속사를 거치지 않는다고만 설명한다. "IVE는 수수료를 떼지/받지/차감하지 않는다" 같은 문장은 절대 쓰지 않는다.
+- 지원금·리워드·정착지원 금액, 한 달 예상 수입은 숫자로 말하지 않는다. "조건과 금액은 활동 방식에 따라 달라서 담당자가 정확히 안내한다"로 답한다.
 - 받을 수 있는 것은 본인이 받은 콩 + 비고 본사 활동지원금 + IVE 자체 리워드 + 신규 정착지원으로 각각 따로다(각각 조건 충족 시).
 - 소속사(IVE)는 어떻게 버나요?: 호스트가 받은 콩은 본사가 본인 지갑에 직접 넣어 주므로 회사가 가져가지 않는다. 회사는 본사 정책에 따라 별도로 지원을 받는 구조라고만 짧게 설명한다.
 - 지원서 개인정보: 지원 처리 목적으로만 사용하고 접수일로부터 1년 보관 후 파기한다. 자세한 내용은 홈페이지 하단 개인정보처리방침에 있다
@@ -120,7 +123,7 @@ const REVIEW_PROMPT = `너는 IVE Entertainment 법무팀 검토자다. 상담 �
 ` + "\n" + LEGAL_KB;
 
 // 예비 AI(Groq, 무료). 키는 Cloudflare Secret "GROQ_API_KEY"에만 저장합니다.
-const GROQ_MODELS = ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "llama-3.1-8b-instant"];
+const GROQ_MODELS = ["llama-3.3-70b-versatile", "openai/gpt-oss-20b", "openai/gpt-oss-120b"]; // 모델마다 무료 사용량이 따로라서 막히면 다음 모델로
 async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
   if (!env.GROQ_API_KEY) return { ok: false, status: 503, detail: "no groq key" };
   const messages = [{ role: "system", content: system }].concat(
@@ -147,7 +150,7 @@ async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
 
 // 대표가 쓰지 않기로 한 표현("IVE는 수수료를 떼지/받지 않는다")이 나오면 그 문장만 지운다
 function scrub(r) {
-  if (r && r.ok && r.text) r.text = r.text.replace(/[^.!?\n]*(IVE|아이브|소속사|저희|회사)[^.!?\n]*수수료[^.!?\n]*(받지|떼지|가져가지|없)[^.!?\n]*[.!?]?[ \t]*/g, "").replace(/\n{3,}/g, "\n\n").trim();
+  if (r && r.ok && r.text) r.text = r.text.replace(/[^.!?\n]*(IVE|아이브|소속사|저희|회사)[^.!?\n]*수수료[^.!?\n]*(받지|떼지|가져가지|차감하지|차감 ?없|청구하지|공제하지|없)[^.!?\n]*[.!?]?[ \t]*/g, "").replace(/\n{3,}/g, "\n\n").trim();
   return r;
 }
 

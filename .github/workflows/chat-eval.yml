@@ -45,5 +45,5 @@ jobs:
             d=json.load(sys.stdin); print((d.get("reply") or d.get("error","")+" "+str(d.get("code",""))+" "+str(d.get("detail",""))[:120]).replace("\n"," "))
           except Exception: print("PARSE_FAIL")')
             echo "::notice::Q$i [$q] => $a"
-            sleep 3
+            sleep 20
           done < q.txt
