@@ -138,7 +138,7 @@ async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
     } catch (e) { r = { ok: false, status: 504 }; continue; }
     if (r.ok || ![404, 429, 500, 503].includes(r.status)) break;
   }
-  if (!r.ok) return { ok: false, status: r.status, detail: r.statusText || "" };
+  if (!r.ok) { let body = ""; try { body = (await r.text()).slice(0, 300); } catch (e) {} return { ok: false, status: r.status, detail: body || r.statusText || "" }; }
   const data = await r.json();
   const text = (data.choices?.[0]?.message?.content || "").replace(/<think>[\s\S]*?<\/think>/g, "").trim();
   return text ? { ok: true, text, via: "groq" } : { ok: false, status: 502, detail: "empty" };
@@ -239,7 +239,7 @@ export default {
     const res = await callGemini(env, SYSTEM_PROMPT, contents, 0.4);
     if (!res.ok) {
       const status = res.status === 429 ? 429 : 502;
-      return json({ error: status === 429 ? "오늘 AI 사용량이 많습니다. 카카오톡으로 문의해 주세요." : "AI 응답에 실패했습니다." }, status, origin);
+      return json({ error: status === 429 ? "오늘 AI 사용량이 많습니다. 카카오톡으로 문의해 주세요." : "AI 응답에 실패했습니다.", ...(env.FORCE_GROQ ? { code: res.status, detail: String(res.detail || "").replace(/gsk_[A-Za-z0-9]+/g, "gsk_***") } : {}) }, status, origin);
     }
     return json({ reply: res.text || "죄송합니다. 답변을 만들지 못했습니다. 카카오톡 오픈채팅으로 문의해 주세요." }, 200, origin);
   },
