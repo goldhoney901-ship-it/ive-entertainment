@@ -165,6 +165,7 @@ async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
 const FEE_OK = "비고라이브는 받은 콩을 본사가 세금 포함 100% 본인 지갑에 직접 넣어 주고, 환전할 때 은행 수수료 정도만 들어요.";
 const FACE_OK = "얼굴 공개 여부는 방송 스타일에 맞춰 담당자가 상담해 드려요.";
 const NUDE_OK = "노출 방송은 비고라이브 규정상 금지예요.";
+const CANCEL_OK = "계약 해지·탈퇴 절차는 담당자가 계약서를 보여 드리며 직접 안내해 드려요.";
 function fixSentences(text, re, good) {
   let used = text.includes(good);
   return text.replace(re, (m) => { const lead = /^\s/.test(m) ? " " : ""; if (used) return lead; used = true; return lead + good + " "; });
@@ -177,6 +178,7 @@ function scrub(r) {
   t = fixSentences(t, /[^.!?\n]*구조라[^.!?\n]*수수료(가|는)? ?없[^.!?\n]*[.!?]?[ \t]*/g, FEE_OK);
   t = fixSentences(t, /[^.!?\n]*얼굴[^.!?\n]*(않아도|안 나와도|없이|안 보여도|공개하지 않)[^.!?\n]*(가능|돼|됩니다)[^.!?\n]*[.!?]?[ \t]*/g, FACE_OK);
   t = fixSentences(t, /[^.!?\n]*노출[^.!?\n]*(될 수|확인|주의|상담|변호사)[^.!?\n]*[.!?]?[ \t]*/g, NUDE_OK);
+  t = fixSentences(t, /[^.!?\n]*(해지|탈퇴)[^.!?\n]*(시스템|앱에서|메뉴|버튼)[^.!?\n]*[.!?]?[ \t]*/g, CANCEL_OK);
   t = t.replace(/법무팀입니다/g, "AI 상담 도우미입니다").replace(/[ \t]{2,}/g, " ").replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
   r.text = t;
   return r;
