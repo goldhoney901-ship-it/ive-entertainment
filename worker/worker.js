@@ -144,12 +144,18 @@ async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
   return text ? { ok: true, text, via: "groq" } : { ok: false, status: 502, detail: "empty" };
 }
 
+// 대표가 쓰지 않기로 한 표현("IVE는 수수료를 떼지/받지 않는다")이 나오면 그 문장만 지운다
+function scrub(r) {
+  if (r && r.ok && r.text) r.text = r.text.replace(/[^.!?\n]*(IVE|아이브|소속사|저희|회사)[^.!?\n]*수수료[^.!?\n]*(받지|떼지|가져가지|없)[^.!?\n]*[.!?]?[ \t]*/g, "").replace(/\n{3,}/g, "\n\n").trim();
+  return r;
+}
+
 async function callGemini(env, system, contents, temperature, timeoutMs = 25000) {
-  if (env.FORCE_GROQ) return callGroq(env, system, contents, temperature, timeoutMs);
+  if (env.FORCE_GROQ) return scrub(await callGroq(env, system, contents, temperature, timeoutMs));
   const g = await callGeminiOnly(env, system, contents, temperature, timeoutMs);
-  if (g.ok && g.text) return g;
+  if (g.ok && g.text) return scrub(g);
   const q = await callGroq(env, system, contents, temperature, timeoutMs);
-  return q.ok ? q : g;
+  return scrub(q.ok ? q : g);
 }
 
 async function callGeminiOnly(env, system, contents, temperature, timeoutMs = 25000) {
