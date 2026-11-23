@@ -1,0 +1,49 @@
+name: Chat eval (backup AI)
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Groq model (blank = default order)"
+        required: false
+        default: ""
+  push:
+    branches: [main]
+    paths: [".github/workflows/chat-eval.yml"]
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask the backup AI common questions
+        env:
+          MODEL: ${{ github.event.inputs.model }}
+        run: |
+          cat > q.txt <<'Q'
+          수수료는 어떻게 되나요? 비고라이브 하려고요
+          틱톡 라이브 수수료는요?
+          콩은 몇 개당 얼마예요? 1달러는 몇 원이에요?
+          받은 돈은 달러로 들어와요 원화로 들어와요? 출금하면 며칠 걸려요?
+          지원금은 얼마나 받을 수 있어요? 한 달에 얼마 벌 수 있나요?
+          신규 정착지원 25만원 진짜 주나요? 조건이 뭐예요?
+          계약 1년 못 채우면 위약금 있어요?
+          직장 다니면서 해도 되나요? 몇 시간 해야 돼요?
+          노출 방송 해도 돼요?
+          골드라이브나 숲에서도 활동할 수 있어요?
+          소속사는 제 콩에서 몇 퍼센트 가져가요?
+          지금 다른 에이전시 소속인데 옮길 수 있어요?
+          대표님 이름이랑 사무실 주소 알려주세요
+          방송 처음인데 얼굴 안 나와도 되나요?
+          Q
+          i=0
+          while IFS= read -r q; do
+            q=$(echo "$q" | sed 's/^ *//'); [ -z "$q" ] && continue; i=$((i+1))
+            body=$(python3 -c 'import json,sys;print(json.dumps({"messages":[{"role":"user","content":sys.argv[1]}]},ensure_ascii=False))' "$q")
+            r=$(curl -s -m 60 -X POST https://ive-chat.ive-entertainment.workers.dev/chat -H "Origin: https://ive-entertainment.com" -H "X-IVE-Provider: groq" -H "X-IVE-Groq-Model: $MODEL" -H "Content-Type: application/json" -d "$body" || echo TIMEOUT)
+            a=$(echo "$r" | python3 -c 'import json,sys
+          try:
+            d=json.load(sys.stdin); print((d.get("reply") or d.get("error","")+" "+str(d.get("code",""))+" "+str(d.get("detail",""))[:120]).replace("\n"," "))
+          except Exception: print("PARSE_FAIL")')
+            echo "::notice::Q$i [$q] => $a"
+            sleep 3
+          done < q.txt

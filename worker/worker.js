@@ -127,7 +127,8 @@ async function callGroq(env, system, contents, temperature, timeoutMs = 25000) {
     contents.map(c => ({ role: c.role === "model" ? "assistant" : "user", content: (c.parts || []).map(p => p.text || "").join("") }))
   );
   let r;
-  for (const model of GROQ_MODELS) {
+  const list = env.GROQ_MODEL ? [env.GROQ_MODEL] : GROQ_MODELS;
+  for (const model of list) {
     try {
       r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         signal: AbortSignal.timeout(timeoutMs),
@@ -195,7 +196,10 @@ function json(body, status, origin) {
 
 export default {
   async fetch(request, env) {
-    if (request.headers.get("X-IVE-Provider") === "groq") env = { ...env, FORCE_GROQ: true }; // 예비 AI 점검용
+    if (request.headers.get("X-IVE-Provider") === "groq") { // 예비 AI 점검용
+      const m = request.headers.get("X-IVE-Groq-Model") || "";
+      env = { ...env, FORCE_GROQ: true, GROQ_MODEL: GROQ_MODELS.includes(m) ? m : "" };
+    }
     const origin = request.headers.get("Origin") || "";
     const allowed = ALLOWED_ORIGINS.includes(origin);
 
