@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 M = open(os.path.join(ROOT, 'src/master.html'), encoding='utf-8').read()
 SITE = 'https://ive-entertainment.com/'
 
-MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- STATS -->','<!-- VIDEO -->','<!-- NEWSCARDS -->','<!-- COMPARE -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
+MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- HOME -->','<!-- STATS -->','<!-- VIDEO -->','<!-- NEWSCARDS -->','<!-- COMPARE -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
          '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- GUIDE -->','<!-- GUIDETT -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
 pos = []
 for m in MARKS:
@@ -65,7 +65,7 @@ def meta(h, title, desc, path):
 BRAND = '아이브 엔터테인먼트 IVE Entertainment'
 PAGES = {
  'index.html': dict(active='', path='', title=None, desc=None, head=None,
-    body=['HERO']),
+    body=['HERO','HOME']),
  'company.html': dict(active='company', path='company.html', title='회사 소개 | '+BRAND,
     desc='아이브 엔터테인먼트 회사 소개 — 비고라이브·틱톡 라이브 전문 에이전시의 매니지먼트 과정과 크리에이터 지원 내용, 활동 플랫폼을 안내합니다.',
     head=('Company','회사 소개','2014년 설립, 라이브 방송 크리에이터와 함께 성장해 온 IVE를 소개합니다.'),
@@ -110,8 +110,9 @@ for fn, p in PAGES.items():
     if fn == 'index.html':
         out = out.replace('</body>', '''<script>
 (function(){var h=document.querySelector('.hero'),f=document.querySelector('footer');if(!h||!f)return;
-function fit(){var need=0;h.querySelectorAll('.hs').forEach(function(x){var c=x.firstElementChild;if(c)need=Math.max(need,c.offsetHeight+110);});h.style.height=Math.max(520,window.innerHeight-f.offsetHeight,need)+'px';h.style.minHeight='0';}
+function fit(){var need=0;h.querySelectorAll('.hs').forEach(function(x){var c=x.firstElementChild;if(c)need=Math.max(need,c.offsetHeight+110);});h.style.height=Math.max(560,need)+'px';h.style.minHeight='0';}
 fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);if(document.fonts)document.fonts.ready.then(fit);})();
+(function(){if(!('IntersectionObserver' in window))return;var seen=new Set();var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)seen.add(e.target);else seen.delete(e.target);});var b=document.getElementById('ive-chat-btn');if(b)b.classList.toggle('hm-hide',seen.size>0);});document.querySelectorAll('.hm-cta').forEach(function(c){io.observe(c);});})();
 </script>
 </body>''', 1)
     if fn in ('bigolive-agency.html','tiktok-live-agency.html'):
