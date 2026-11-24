@@ -8,7 +8,7 @@ M = open(os.path.join(ROOT, 'src/master.html'), encoding='utf-8').read()
 SITE = 'https://ive-entertainment.com/'
 
 MARKS = ['<!-- NAV -->','<!-- HERO -->','<!-- HOME -->','<!-- STATS -->','<!-- VIDEO -->','<!-- NEWSCARDS -->','<!-- COMPARE -->','<!-- INTRO -->','<!-- ABOUT -->','<!-- PROCESS -->',
-         '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- GUIDE -->','<!-- GUIDETT -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
+         '<!-- PLATFORMS -->','<!-- CREATORS -->','<!-- ROUTE -->','<!-- APPLY -->','<!-- BUSINESS -->','<!-- GUIDE -->','<!-- GUIDETT -->','<!-- ART1 -->','<!-- ART2 -->','<!-- ART3 -->','<!-- CONTACTCARDS -->','<!-- CONTACT -->','<!-- FOOTER -->']
 pos = []
 for m in MARKS:
     assert M.count(m) == 1, m
@@ -91,13 +91,25 @@ PAGES = {
     head=('Guide','틱톡 라이브 소속사 가이드','틱톡 라이브 에이전시 가입 방법과 소속사 고르는 법'),
     body=['GUIDETT']),
  'news.html': dict(active='news', path='news.html', title='소식 | '+BRAND,
-    desc='아이브 엔터테인먼트 소식 — 강남역 미디어월, 압구정 신웅빌딩 광고 등 IVE 크리에이터가 함께한 비고라이브 광고 영상과 새로운 소식을 전합니다.',
-    head=('News','소식','IVE 크리에이터와 함께한 광고 영상과 새로운 소식'),
-    body=['VIDEO','NEWSCARDS']),
+    desc='아이브 엔터테인먼트 소식·가이드 — 비고라이브 정산 구조, 방송 시간, 계약 전 확인할 것 등 크리에이터 가이드와 IVE 크리에이터가 함께한 광고 영상을 전합니다.',
+    head=('News','소식 · 가이드','방송 시작 전에 궁금한 것들과 IVE의 새로운 소식'),
+    body=['NEWSCARDS','VIDEO']),
  'news-tiktok-vs-bigo.html': dict(active='news', path='news-tiktok-vs-bigo.html', title='틱톡 라이브 vs 비고 라이브 비교 — 수수료·환전율·라이브 조건 | '+BRAND,
     desc='틱톡 라이브와 비고 라이브의 차이를 한눈에 비교했습니다. 라이브 조건, 노출 구조, 수익·지원금 구조, 환전율, 수수료와 지급 방식까지 정리. 두 플랫폼 모두 아이브 엔터테인먼트에서 시작할 수 있습니다.',
     head=('News','틱톡 라이브 vs 비고 라이브','어디서 방송할지 고민될 때 보는 플랫폼 비교'),
     body=['COMPARE']),
+ 'news-bigo-fee.html': dict(active='news', path='news-bigo-fee.html', title='비고라이브 소속사 들어가면 콩 떼이나요? 정산 구조 정리 | '+BRAND,
+    desc='비고라이브 소속사(에이전시)에 들어가면 수익을 떼이는지 궁금하신가요? 받은 콩은 비고 본사가 세금 포함 100% 본인 지갑에 직접 넣어 줍니다. 콩 환율, 출금 기간, 계약 전 확인할 것까지 정리했습니다.',
+    head=('Guide','소속사 들어가면 콩 떼이나요?','비고라이브 정산 구조, 한 번에 정리'),
+    body=['ART1']),
+ 'news-bigo-hours.html': dict(active='news', path='news-bigo-hours.html', title='비고라이브 하루 몇 시간 방송해야 하나요? 정책별 방송 시간 | '+BRAND,
+    desc='비고라이브 방송 시간은 정책마다 다릅니다. 일반 정책 한 달 40시간, 유저 정책은 시간 조건 없음. 하루 기준 환산, 직장인 병행 방법, 꾸준히 방송하는 요령을 정리했습니다.',
+    head=('Guide','하루 몇 시간 방송해야 할까?','비고라이브 정책별 방송 시간 정리'),
+    body=['ART2']),
+ 'news-bigo-contract-check.html': dict(active='news', path='news-bigo-contract-check.html', title='비고라이브 소속사 계약 전 꼭 확인할 5가지 | '+BRAND,
+    desc='비고라이브 소속사(에이전시) 계약 전에 확인할 5가지 — 공식 에이전시 여부, 콩 정산 구조, 계약 기간과 해지 조건, 약속의 서면 확인, 개인정보 요구 방식.',
+    head=('Guide','계약 전 꼭 확인할 5가지','비고라이브 소속사 고르기 체크리스트'),
+    body=['ART3']),
  'contact.html': dict(active='contact', path='contact.html', title='문의하기 | '+BRAND,
     desc='아이브 엔터테인먼트 연락처 — 전화, 이메일, 카카오톡 오픈채팅, 인스타그램으로 문의하실 수 있습니다.',
     head=('Contact','문의하기','편한 방법으로 연락 주세요.'),
@@ -115,7 +127,7 @@ fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);
 (function(){if(!('IntersectionObserver' in window))return;var seen=new Set();var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)seen.add(e.target);else seen.delete(e.target);});var b=document.getElementById('ive-chat-btn');if(b)b.classList.toggle('hm-hide',seen.size>0);});document.querySelectorAll('.hm-cta').forEach(function(c){io.observe(c);});})();
 </script>
 </body>''', 1)
-    if fn in ('bigolive-agency.html','tiktok-live-agency.html'):
+    if fn in ('bigolive-agency.html','tiktok-live-agency.html','news-bigo-fee.html','news-bigo-hours.html','news-bigo-contract-check.html'):
         import json as _j
         faq={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
           {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',out)]}
