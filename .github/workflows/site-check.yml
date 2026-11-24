@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Check live pages
         run: |
-          sleep 5
+          sleep 75
           for p in privacy.html privacy-site.html apply.html business.html index.html news.html news-bigo-fee.html news-bigo-hours.html news-bigo-contract-check.html sitemap.xml; do
             code=$(curl -s -o page.html -w '%{http_code}' "https://ive-entertainment.com/$p?nocache=$RANDOM")
             title=$(grep -o '<title>[^<]*' page.html | head -1 | sed 's/<title>//')
             links=$(grep -o 'href="privacy[^"]*"' page.html | sort | uniq -c | tr '\n' ' ')
-            v05=$(grep -c '본인 방송 주소' page.html || true); cta=$(grep -c '간단 지원하기' page.html || true); cf=$(grep -c cloudflareinsights page.html || true); fm=$(grep -c form-more page.html || true); nv=$(grep -c '상단 지원하기 버튼 강조' page.html || true)
+            v05=$(grep -c '본인 방송 주소' page.html || true); cta=$(grep -c '간단 지원하기' page.html || true); cf=$(grep -c cloudflareinsights page.html || true); fm=$(grep -c form-more page.html || true); nv=$(grep -c '첫 화면 장점·버튼 제거' page.html || true)
             echo "::notice::$p HTTP $code | $title | $links | 본인방송주소=$v05 | 간단지원하기=$cta | 통계=$cf | 접기=$fm | 버튼수정=$nv"
           done
