@@ -1,0 +1,21 @@
+name: Cloudflare Web Analytics setup
+on:
+  workflow_dispatch:
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or find Web Analytics site
+        env:
+          CF: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          H="Authorization: Bearer $CF"
+          acc=$(curl -s -H "$H" https://api.cloudflare.com/client/v4/accounts | python3 -c 'import json,sys;d=json.load(sys.stdin);print(d["result"][0]["id"] if d.get("result") else "NONE "+str(d.get("errors")))')
+          echo "account: ${acc:0:6}..."
+          list=$(curl -s -H "$H" "https://api.cloudflare.com/client/v4/accounts/$acc/rum/site_info/list")
+          echo "$list" | python3 -c 'import json,sys;d=json.load(sys.stdin);print("list ok:",d.get("success"),d.get("errors"));[print("::notice::existing",s.get("ruleset",{}).get("zone_name") or s.get("host"),"tag=",s["site_tag"]) for s in (d.get("result") or [])]'
+          if ! echo "$list" | grep -q 'ive-entertainment.com'; then
+            r=$(curl -s -X POST -H "$H" -H "Content-Type: application/json" "https://api.cloudflare.com/client/v4/accounts/$acc/rum/site_info" -d '{"host":"ive-entertainment.com","auto_install":false}')
+            echo "$r" | python3 -c 'import json,sys;d=json.load(sys.stdin);print("create:",d.get("success"),d.get("errors"));r=d.get("result") or {};print("::notice::created tag=",r.get("site_tag"),"token=",r.get("site_token"))'
+          fi
+          curl -s -H "$H" "https://api.cloudflare.com/client/v4/accounts/$acc/rum/site_info/list" | python3 -c 'import json,sys;d=json.load(sys.stdin);[print("::notice::site",s.get("host"),"site_token=",s.get("site_token")) for s in (d.get("result") or [])]'
