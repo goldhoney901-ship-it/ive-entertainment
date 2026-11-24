@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Check live pages
         run: |
-          sleep 20
+          sleep 90
           for p in privacy.html privacy-site.html apply.html business.html index.html; do
             code=$(curl -s -o page.html -w '%{http_code}' "https://ive-entertainment.com/$p?nocache=$RANDOM")
             title=$(grep -o '<title>[^<]*' page.html | head -1 | sed 's/<title>//')
             links=$(grep -o 'href="privacy[^"]*"' page.html | sort | uniq -c | tr '\n' ' ')
-            v05=$(grep -c '본인 방송 주소' page.html || true)
-            echo "::notice::$p HTTP $code | $title | $links | 본인방송주소=$v05"
+            v05=$(grep -c '본인 방송 주소' page.html || true); cta=$(grep -c '간단 지원하기' page.html || true)
+            echo "::notice::$p HTTP $code | $title | $links | 본인방송주소=$v05 | 간단지원하기=$cta"
           done
